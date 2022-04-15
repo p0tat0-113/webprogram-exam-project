@@ -7,20 +7,42 @@
     <body>
         <h3>도서목록 페이지로 이동</h3>
         <p>분야를 클릭하면 해당 페이지로 이동</p>
+
         <ul>
-            <li><a href = "lec3ex2.html" title = "컴퓨터">컴퓨터</a></li> <!--상대주소, title 속성-->
-            <li><a href = "https://naver.com" title = "네이버">it공학과</a></li>
+            <li><a href = "lec3ex2.html"title="컴퓨터">컴퓨터</a></li> <!--상대주소, title 속성-->
+            <li><a href = "http://www.yes24.com/Main/default.aspx"title="네이버"target="intro">it공학과</a></li>
             <li>전자공학</li>
             <li>인간공학</li>
         </ul>
+
         <figure> <!--피규어 요소, 묶어서 하나의 독립적인 단위로 취급-->
         <a href = 'https://naver.com'><img src = "Lec03_ex/IT_intro.jpg"></a>IT 기술의 이해<!--이미지에 하이퍼 링크 연결-->
         <figcaption>[그림1] 책소개</figcaption> <!--피규어 캡션-->
         </figure>
+
         <img src = "Lec03_ex/IT_intro.jpg" width="70">IT 기술의 이해 <!--비율에 맞춰서 줄음-->
         <img src = "Lec03_ex/IT_intro.jpg" width="70" height="50">IT 기술의 이해
         <img src = "Lec03_ex/IT_int.jpg" alt="sorry">IT 기술의 이해 <!--대체 텍스트 alt-->
-
         
+        <br>
+
+        <audio controls src = 'Lec03_ex/song.mp3' autoplay>
+            브라우저에서 &lt;audio&gt;를 지원하지 않습니다. <!--재생되지 않을 것을 대비한 대체문구-->
+        </audio>
+
+        <audio controls> <!--파일이 깨졌을때 여러 대안 준비-->
+            <source src='Lec03_ex/song.mp3' type='audio/mp3'>
+            <source src='Lec03_ex/song.mp3' type='audio/mp3'>
+        </audio>
+
+        <br>
+
+        <video controls autoplay widt ='360' height='240'preload='none'src='Lec03_ex/bear.mp4'>
+            비디오를 재생할 수 없습니다. 
+        </video>
+        <video controls autoplay widt ='360' height='240'preload='metadata'src='Lec03_ex/bear.mp4'>
+            비디오를 재생할 수 없습니다. 
+        </video>
+        <iframe width='600'height='400'src=''name="intro"></iframe>
     </body>
 </html>
