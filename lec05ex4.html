@@ -1,0 +1,39 @@
+<!--
+    overflow 처리
+    박스 테두리 둥글게
+    박스 크기 지정
+    박스에 그림자
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            .box1{width:50%; min-width: 180px; height: 110px;border: thin solid black; 
+            overflow: visible; border-radius: 10px;}
+            .box2{width:50%; min-width: 180px; height: 110px;border: thin solid black; 
+            overflow: hidden; border-top-left-radius: 10px; border-bottom-right-radius: 10px;}
+            .box3{width:50%; min-width: 180px; height: 110px;border: thin solid black; 
+            overflow: scroll; box-shadow: 2px 2px 20px 2px blue}
+            .box4{width:50%; min-width: 180px; height: 110px;border: thin solid black; overflow: auto;}
+            
+        </style>
+    </head>
+    <body>
+        <p class="box1">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+        안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+        안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br></p>
+
+        <p class="box2">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+            안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+            안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br></p>
+
+        <p class="box3">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+        안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+        안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br></p>
+
+        <p class="box4">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+            안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br>
+            안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요<br></p>
+    </body>
+</html>

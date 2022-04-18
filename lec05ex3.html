@@ -1,0 +1,61 @@
+<!--
+    position
+
+    static: 요소가 순서대로 배치, 위치지정 필요없음
+    absolute: 문서 혹은 위치를 지정한 상위요소 기준 절대위치에 배치
+    relative: normal 위치 기준으로 상대위치에 배치
+    fixed: 현재 브라우저 화면 내에서의 절대위치에 배치
+
+    마우스를 올리면 애니메이션 재생되게 하기
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            .w3c-static{position: static;}
+
+            .h5-static{position: static; top:100px; left: 300px;}
+
+            .css-relative{position: relative; left: 80px;} /*글자 옆부터 시작해서 왼쪽으로 80px*/
+
+            .h5-absolute{position: absolute; top:170px; left: 100px;}
+
+            .css-fixed{position: fixed;top:20px;right:500px;}
+
+            .float1{float: left;border: thin solid black; opacity: 0.5;}
+            .float2{float: right;border: thin solid black; opacity: 0.2;}
+
+            .hover:hover{border: thick solid black; background-color: yellow; transition: 4s;
+            transform: rotate(45deg)}
+        </style>
+    </head>
+    <body>
+        <h3>5.5 새로운 문서 표준 HTML5
+        <img src="Lec05_ex/W3C_logo.gif" class="w3c-static" width="72" height="40">
+        </h3>
+
+        <p>
+            <img src="Lec05_ex/H5_logo.gif" class="h5-static" width="54" height="66">
+            현재 W3C에서 표준안 개발을 하고 있는 HTML5는 차세대 웹표준 어쩌구 저쩌구..<br><br>
+        </p>
+
+        <h3>5.5.1 HTML5의 탄생 배경 및 특징
+            <img src="Lec05_ex/H5_logo.gif" class="h5-absolute" width="54" height="66">
+            <img src="Lec05_ex/CSS3_ad.gif" class="css-relative" width="54" height="66">
+            
+        </h3>
+        <img src="Lec05_ex/CSS3_ad.gif" class="css-fixed" width="166" height="70">
+        </h3>
+
+        <img src="Lec05_ex/H5_logo.gif" class="float1" width="54">
+        <img src="Lec05_ex/H5_logo.gif" class="float2" width="54">
+        <p style="display:inline; background-color:aqua">
+        agfgkhafhkahfhkhfhafhkafhkahfhahfkahfhakfhakgahdkhkahdkahdkhdhahdkahdakd<br>
+        agfkhahfkhfhafhahfhkfakfhakfhkahfkahfkhafkhakfhahfkahfkafkafkhafhkafkafh</p>
+        <br>
+
+        <img src="Lec05_ex/H5_logo.gif" class="hover" style="position:relative; top:50px;">
+        <!--마우스를 올리면 애니메이션 재생-->
+    </body>
+</html>
