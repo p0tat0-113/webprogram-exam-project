@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form method="get" action="form_app.js">
+            색 입력: <input type="color"><br>
+
+            이메일 입력: <input type="email"> <!--이메일이 제대로 입력되었는지 자동으로 확인해줌!--><br>
+
+            url 입력: <input type="url"><br>
+
+            전화번호: <input type="tel" placeholder="000*0000*0000" 
+            pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"><br>
+
+            검색창: <input type="search"><br>
+
+            날짜 입력: <input type="date"><input type="month"><input type="week"><br><!--min,max,value 속성이 있음-->
+
+            시간 입력: <input type="time"><input type="datetime"><input type="datetime-local"><br>
+
+            숫자 입력: <input type="number"><br>
+
+            범위 입력: <input type="range" min="0" max="100" step="5"><br>
+
+            참가국: <input type="text" list="country"><br> <!--입력창에 포커스가 들어오면 옵션 목록이 등장함-->
+            <datalist id="country">
+                <option value="영국"></option>
+                <option value="독일"></option>
+                <option value="미국"></option>
+            </datalist>
+            <input type="submit" value="확인">
+
+
+            <br><br><br>
+            <fieldset>
+                <legend>도서 예약 대출</legend>
+                성명: <input type="text" placeholder="홍길동" name="name" required><br>
+                전화: <input type="tel" placeholder="000-0000-0000" name="tel" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"><br>
+                이메일: <input type="email" placeholder="***@***.***"name="email"><br><br>
+                도서명: <input type="text" name="bookname" list="books" required><br>
+                <datalist id="books">
+                    <option value="html"></option>
+                    <option value="생각보다"></option>
+                    <option value="할만하네ㅋㅋ"></option>
+                </datalist>
+                책 수량: <input type="number" min="1"><br>
+                예약 희망일: <input type="date" name="hope" required><br>
+                수령 시간: <input type="time" name="from" required min="09:00", max="18:00">에서 <input type="time" name="to" required min="09:00", max="18:00">에서
+                <br><br>
+                <input type="submit" value="전송하기"><input type="reset" value="취소하기">
+            </fieldset>
+        </form>
+    </body>
+</html>

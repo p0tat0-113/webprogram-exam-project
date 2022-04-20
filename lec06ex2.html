@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form method="get" action="form_app.js">
+            <h3>도서 검색</h3>
+            <fieldset> <!--fieldset-->
+                <legend>로그인</legend> <!--fieldset 밑에 legend, legend는 한 번 씩만 쓸 수 있음!-->
+                아이디: <input type="text" name="id"><br>
+                비밀번호: <input type="password">
+            </fieldset>
+            <br><br>
+
+            <fieldset>
+                <legend>통합 검색</legend>
+                도서명: <input type="text" name="bookname"><br>
+                검색범위: <label for="keyword">키워드</label> <input type="radio" id="keyword" name="extent" value="keyword">
+                <label for="contents">본문내용</label> <input type="radio" id="contents" name="extent" value="contents">
+                <br>자료유형: <input type="checkbox" name="kind" vlaue="all">전체
+                <input type="checkbox" name="kind" vlaue="short">단행본
+                <input type="checkbox" name="kind" vlaue="haksul">학술지
+                <input type="checkbox" name="kind" vlaue="notbook">비도서
+            </fieldset>
+            <br>
+            &nbsp;<input type="submit" value="검색">&nbsp;&nbsp;
+            <input type="reset" value="지우기">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css"></style>
+    </head>
+    <body>
+        <form method="get" action="form_app.js">
+            <fieldset>
+                <legend>입력해주세요</legend>          
+                이름 입력: <input type="text" name="text1"><br>
+
+                <!--label을 받기 위해서 <input>안에 id속성도 들어가야함-->
+                성별 입력: <label for="male">남자</label><input type="radio" name="sex" value="male" id="male">
+                <label for="female">여자</label><input type="radio" name="sex" value="female" id="female"><br>
+
+                비밀번호 입력: <input type="password" name="password"><br>
+
+                파일 업로드: <input type="file" name="my file"><br>
+
+                전화번호입력: <input type="tel" name="tel" placeholder="000-0000-0000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"><br>
+
+                숫자입력: <input type="number" min="0" max="10"><br>
+
+                범위입력: 0<input type="range" min="0" max="10" step="2">10<br>
+
+                리스트 목록에서 고르기: <input type="text" list="country" name="country">
+                <datalist id="country">
+                    <option value="독일"></option>
+                    <option value="미국"></option>
+                    <option value="일본"></option>
+                </datalist><br>
+
+               <input type="hidden" name="ip_address" value="192.168.0.0">
+
+                직업: <select name="job" size="1">
+                    <option value="teacher">선생</option>
+                    <option value="student">학생</option>
+                    <option value="farmer">농부</option>
+                </select><br>
+
+                <textarea cols="50" rows="5" placeholder="여기에 입력"></textarea>
+                </fieldset>
+
+                <input type="submit" value="확인">
+                <input type="reset" value="취소">
+                <input type="button" value="전송하기" onclick="alert('다시 확인하세요')">
+        </form>
+        
+    </body>
+</html>

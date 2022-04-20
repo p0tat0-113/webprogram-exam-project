@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            .box{border:thin solid black; width:25%; padding-bottom:25px; padding-left: 20px;}
+        </style>
+    </head>
+    <body>
+        <div class="box">
+        <h3>다양한 입력 폼</h3>
+        <form method="get" action="form_app.js">
+            성명: <input type="text" name="person" value="여기에 입력"><br><!--value에 기본 텍스트를 넣을 수 있음-->
+
+            비밀번호 입력 테스트: <input type="password"><br><!--이렇게 비밀번호 입력창도 만들 수 있음!-->
+
+            성별: <label for="male">남성</label> <!--label을 쓰면 글자만 눌러도 radio가 선택됨-->
+            <input type="radio" name="sex" id="male" value="male"> <!--label을 쓰려면 이렇게 id를 넣어줘야됨-->
+            <label for="female">여성</label>
+            <input type="radio" name="sex" id="female" value="female"><br>
+
+            직업: <select name="job" size="1"> <!-- <select> <option>-->
+                <option>학생</option><option>직장인</option><option>자영업</option><option>백수</option>
+            </select><br><br>
+
+            파일 업로드 하기: <input type="file" name="내 파일">
+
+            <p>구입희망분야(복수선택가능)<br><br>
+            -분야: <input type="checkbox" name="books" value="computer">컴퓨터
+            <input type="checkbox" name="books" value="economy">경제
+            <input type="checkbox" name="books" value="common">상식<br>
+
+            비고:<br>
+            <textarea name="comments" rows="4" cols="40">전달하고 싶은 내용을 적으세요<!--기본텍스트--></textarea></p><hr>
+
+            <input type="submit" value="전송하기"> 
+            <input type="reset" value="취소">
+            <input type="button" value="확인하기" onclick="alert('입력값 확인')">
+            <input type="image" src="Lec03_ex/dog.jpg" width="30" style="position:relative; top:8px;">개toRl
+        </form>
+        </div>
+    </body>
+</html>
