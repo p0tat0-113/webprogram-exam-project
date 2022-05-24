@@ -15,4 +15,7 @@ a:hover{color:blue; font-size: 50pt; transition-duration: 2s;}
 .moving{width:50px;}
 .moving:hover{width:200px; transition: width 4s;}
 
+.moving2{font-size: 20pt;}
+.moving2:hover{font-size: 50pt; transition: font-size 4s;}
+
 .trans:hover{transform: translate(100px,0px);}
