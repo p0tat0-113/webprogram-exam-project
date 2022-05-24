@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<!--hello.html
+간단한 인사말을 화면에 표시하는 HTML/자바스크립트 기본 예제-->
+
+<html>
+    <head>
+        <title>Welcome to the JavaScript</title>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.write("Hello, welcome to the JavaScript"+"<br>")//이렇게 줄바꿈
+            //화면에 Hello, welcome to the JavaScript 문구 출력
+
+            //var로 변수를 선언한다. 
+            //사전에 선언없이 사용하는 것도 가능, 전역변수로 사용시에는 사전에 선언해야 한다.
+            //변수타입을 고려하지 않고 대충 선언하면 됨
+            var index,name="모바일웹";
+            var start=0,end=100.0;
+            var message,condition,sender,receiver;
+
+            var a="3";
+            var b=2;
+            c = b+3+a; //b+3연산이 우선 
+            d = a+b; //a가 연산의 우선이므로 뒤에오는 b를 문자열 "2"로 바꿔서 문자열을 합치는 연산을 함.
+
+            document.write(a+",")
+            document.write(b+",")
+            document.write(c+",")
+            document.write(d+"<br><br>")
+            // +를 이용해서 이렇게 문자열을 합칠 수 있음.
+
+
+            // .toString()로 String로 문자열로 형변환
+            //parseInt(), parseFloat()로 숫자로 형변환
+            var length=123,length_num,length_str;
+
+            length_num=length+10; //length_num=133
+            length_str=length.toString()+10; //length_str=12310
+            document.write(length_num+"<br>")
+            document.write(length_str+"<br>")
+
+            var num=parseInt(length_str)+20; //12310+20=12330
+            document.write("length in integer:"+num+"<br><br>")
+
+            //document.write()는 html문서를 출력한다고 보면 된다...?
+            //write를 이용해서 이렇게 테이블을 만들 수도 있음.
+            //반복문과 조합해서 변수만 넣어주면 자동으로 테이블을 생성하는 식으로 활용
+            var title1="멀티미디어 배움터 2.0";
+            var title2="모바일 멀티미디어";
+            var title3="자바입문: 이론과 실습";
+
+            document.write("<table border=1>");
+            document.write("<caption>베스트셀러</caption>");
+            document.write("<tr>");
+            document.write("<th>순위</th>");
+            document.write("<th>제목</th>");
+            document.write("</tr>");
+            document.write("<tr><td>1</td><td>"+title1+"</td></tr>");
+            document.write("<tr><td>2</td><td>"+title2+"</td></tr>");
+            document.write("<tr><td>3</td><td>"+title3+"</td></tr>");
+            document.write("</table>");
+            //iframe도 되네ㅋㅋㅋㅋ
+            //document.write("<br>"+"<a target=iframe href=http://www.yes24.com/>예스24로 가기"+"<br>")
+            //document.write("<iframe width=500 height=500 border=1 name=iframe src=https://lily-im.tistory.com/6"+"<br><br><br>")
+
+            //alert!!!
+            alert("HTML5 프로그래밍\n웹사이트로 이동합니다!");
+
+            var answer=confirm("주문한 서적을 결제하시겠습니까?");
+            document.write("Answer:"+answer+"<br>");
+            var answer=prompt("문자열을 입력해주세요.");
+            document.write("Answer:"+answer+"<br>");
+        </script>
+    </body>
+</html>
