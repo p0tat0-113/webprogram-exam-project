@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            //배열
+            //reverse, sort, join, concat, slice 같은 배열객체들이 있음.
+            var book_arr = new Array("멀티미디어 배움터 2.0", "생능출판사", "최윤철 임순범", 25000)
+
+            for(i=0; i<book_arr.length; i++){
+                document.write("book_arr["+i+"]"+":"+book_arr[i]+"<br>")
+            }
+            document.write("<br>")
+
+            document.write("book_arr[100]:"+book_arr[100]+"<br>")//undefined가 나옴.
+        </script>
+    </body>
+</html>

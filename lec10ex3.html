@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            //웹브라우저에서 제공하는 자바스크립트 객체
+            //navigator, window, document 등등
+            
+            
+            //window객체에는 open, close, alert, confirm, prompt가 있음
+            var win;
+            function open_window(){
+                var url=prompt("원하는 주소를 입력해주세요");
+                if(url)win=window.open(url);
+            }
+        </script>
+        <button onclick="open_window();">open window</button>
+        <button onclick="win.close();">close window</button>
+
+
+        <!--navigator로 웹브라우저 종류와 버전을 알아낼 수 있음.appName, appVersion, userAgent-->
+        <form>
+            <input type = "button" value = "Check Navigator appName"
+            onclick = "document.getElementById('appName').value = navigator.appName;"/>
+            <br/>
+            <input id = "appName" type = "text" size = "110"/>
+            <br/>
+            <input type = "button" value = "Check Navigator appVersion"
+            onclick = "document.getElementById('appVersion').value = navigator.appVersion;"/>
+            <br/>
+            <input id = "appVersion" type = "text" size = "110"/>
+            </form>
+    </body>
+</html>
