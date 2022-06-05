@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> Music and DVD </title>
+<link rel="stylesheet" type="text/css" href="style-size.css"/>
+<link rel="stylesheet" type="text/css" href="style-layout.css"/>
+<link rel="stylesheet" type="text/css" href="style-presentation.css"/>
+
+<script type="text/javascript">
+  
+  function play() {//재생 버튼 누르면 일시정지버튼으로 바뀌면서 정지, 일시정지 버튼 누르면 재생버튼으로 바뀌면서 재생
+    var myVideo = document.getElementById("my_video");
+    var playBtn = document.getElementById("playbtn");
+    if(myVideo.paused){
+      playBtn.innerHTML = "일시정지";
+      myVideo.play();
+    }
+    else{
+      playBtn.innerHTML = "재생";
+      myVideo.pause();
+    }
+  }
+
+  function updateVolume(val) {//range같이 변할때마다 그 값을 가져와서 작동함
+    var myVideo = document.getElementById("my_video");
+    myVideo.volume = val/100;
+  }
+
+  function updateTime()//
+  {
+    var myVideo = document.getElementById("my_video");
+    var timeDiv = document.getElementById("time");
+    timeDiv.innerHTML = Math.floor(myVideo.currentTime) + "/" + Math.floor(myVideo.duration) + "(초)";
+  }
+
+  window.onload = function(){
+    var myVideo = document.getElementById("my_video"); //이거 넣으니까 되네....
+    myVideo.addEventListener("timeupdate", updateTime);//이벤트 리스너 timeupdate,updateTime함수 호출
+  }
+</script>
+
+</head>
+<body class="booklist musiclist aerialview">
+  <div class="head">음반/DVD</div>
+
+  <ul>
+    <li>
+      <img height="200"
+           src="http://peach.blender.org/wp-content/uploads/poster_rodents_small.jpg"/>
+      <br/>
+      Big Buck Bunny - 4 - Death Becomes Fur<br/>
+      <audio
+        src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4" controls>
+        Your browser does not support the audio tag.
+      </audio>
+    </li>
+    <li>
+      <img height="200" src="http://www.sintel.org/wp-content/uploads/2010/05/title-Sintel.jpg"/>
+      <video height="200" id="my_video" src="http://media.w3.org/2010/05/sintel/trailer.mp4" controls>
+        Your browser does not support the video tag.
+      </video>
+
+      <button id="playbtn" onclick="play()">재생</button>
+      재생시간/총시간:&nbsp;<span id="time"></span><br>
+      볼륨:&nbsp;<input id="volctrl" type="range" step="1" min="0" max="100" step="any" oninput="updateVolume(this.value)" onchange="updateVolume(this.value)">
+      <!--값이 변할때마다 updateVolume함수 호출함-->
+    </li>
+  </ul>
+  <!--와 볼륨조절 이제야되네ㅋㅋ-->
+</body>
+</html>

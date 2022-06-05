@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+        function calcSum() {
+            // table element 찾기
+            const table = document.getElementById("books");
+            
+            // 합계 계산
+            let sum = 0;
+            for(let i = 1; i < table.rows.length; i++)  {//1부터 시작하면 됨
+                
+                sum += parseInt(table.rows[i].cells[1].innerHTML);
+            }
+        
+            // 합계 출력
+            document.getElementById("sum").innerText = sum;
+        }
+        </script>
+    </head>
+    
+    
+    <body>
+        <table border="1" id="books">
+           
+            <tr><th>asdadad</th><th>fgagdfjag</th></tr>
+            <tr>
+                <td>apple</td>
+                <td> 123,00원 </td>
+            </tr>
+            <tr>
+                <td>apple</td>
+                <td> 123,00원 </td>
+            </tr>
+            <tr>
+                <td>apple</td>
+                <td>  </td>
+            </tr>
+        </table>
+        <input type="button" value="clac" onclick="calcSum()">
+        <div id="sum"></div>
+    </body>
+</html>

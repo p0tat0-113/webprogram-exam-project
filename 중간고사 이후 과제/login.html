@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> Login Page </title>
+<link rel="stylesheet" type="text/css" href="style-size.css"/>
+<link rel="stylesheet" type="text/css" href="style-layout.css"/>
+<link rel="stylesheet" type="text/css" href="style-presentation.css"/>
+</head>
+<body id="login">
+
+    <script>
+      function SaveID(){ //웹 스토리지 저장 함수
+        var id = document.getElementById("id");
+        window.localStorage.setItem("id",id.value);
+      }
+
+      function login_message() { //웹 스토리지에 저장된 id 출력하는 함수
+        var message = document.getElementById("message");
+        message.innerHTML = window.localStorage.getItem("id")+"님 로그인 되었습니다.";
+      }
+    </script>
+
+    <form>    
+      <a>회원가입</a>
+      <a>아이디/비밀번호찾기</a>
+      <fieldset>
+        <span>사용자 아이디</span>
+        <input type="text" value="" id="id" required/><br/><!--required로 입력하지 않을시 경고창-->
+
+        <span>비밀번호</span>
+        <input id="password" type="password"><br/>
+        <span></span>
+        <input id="login_button" type="button" onclick="SaveID(),login_message()" value="로그인" /><!--버튼 누르면 SaveID함수 호출해서 ID 저장-->
+        <input id="reset" type="button" value="취소" />
+      </fieldset>
+    </form>
+    <p style="font-size:15pt;" id="message"></p>
+</body>
+</html>

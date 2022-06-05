@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title> Order Page </title>
+<link rel="stylesheet" type="text/css" href="style-size.css"/>
+<link rel="stylesheet" type="text/css" href="style-layout.css"/>
+<link rel="stylesheet" type="text/css" href="style-presentation.css"/>
+
+
+</head>
+<body id="order">
+<div class="head"> 서적 주문 양식 </div>
+<form action="">
+
+    <script type="text/javascript">
+        function calcSum() {//합계 계산하는 함수!
+            // table element 찾기
+            const table = document.getElementById("books");
+            
+            // 합계 계산
+            var sum_sum = 0;
+            var sum_num = 0;
+            for(let i = 1; i < (table.rows.length-1); i++)  {
+                //가격
+                var price = parseInt(table.rows[i].cells[1].innerHTML);
+                //수량
+                var num = document.getElementById("num"+i);
+                //가격*수량
+                price = price*parseInt(num.value);//parseInt꼭 넣어줘야 함. num.value가 문자열이기 때문에
+                //각각 수량 출력
+                var each_price = document.getElementById("sum"+i);
+                each_price.value = price+",000";
+
+                //최종 값 구하는 부분
+                sum_num += parseInt(num.value);
+                sum_sum += price;
+
+                //최종 값 출력하는 부분
+                var total_sum = document.getElementById("total_sum");
+                var total_num = document.getElementById("total_num");
+                total_num.innerHTML = sum_num;
+                total_sum.innerHTML = sum_sum+",000원";
+            }
+        }
+
+        function reset() {//수량 값을 초기화 하는 함수!
+            for(let i = 1; i < (table.rows.length-1); i++)  {
+                var num = document.getElementById("num"+i);
+                num.innerText = "0";
+            }
+        }
+
+        function deleteRow() {//수량이 0인 row를 삭제해서 정리하는 함수!
+            var minus = 0; //row를 삭제하면서 발생하는 i값과 인덱스값의 불일치를 맞춰주기 위한 수
+            
+            const table = document.getElementById("books");
+            var length = (table.rows.length-1);//삭제하다보면 table.rows.length값이 줄어들어서 오류가 발생하기 때문에 미리 변수로 저장
+
+            for(let i = 1; i < length; i++)  {
+                var num = document.getElementById("num"+i);
+                num = parseInt(num.value);
+                
+                if(num == 0){//id를 통해 가져온 값이 0이면 row 삭제
+                    console.log(num);
+                    table.deleteRow(i-minus); //i-1-minus아님...
+                    console.log("delete");
+                    minus = minus+1;
+                }
+                else{
+                    continue;
+                }  
+            }
+        }
+
+        function login_message() { //주문하기 버튼 눌렀을때 ID표시
+            var message = document.getElementById("message");
+            message.innerHTML = window.localStorage.getItem("id")+"님의 주문 내역입니다.";
+            console.log("로그인 메세지 함수 작동");
+        }
+        
+    </script>
+
+    
+    <p> 주문서 </p>
+    <table id="books">
+        <tr> <th> 책 제목 </th> <th> 가격 </th> <th> 수량 </th> <th> 합계 </th> </tr>
+        <tr>
+            <td> 컴퓨터와 IT기술의 이해 [개정판-2판] </td> <td> 27,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num1"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum1"/> 원</td> <!--oninput으로 수량 입력시 자동으로 계산 활성화-->
+        </tr>
+        <tr>
+            <td> 소셜미디어의 이해와 활용 <td> 21,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num2"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum2"/> 원</td>
+        </tr>
+        <tr>
+            <td> 비즈니스 정보 시스템 </td> <td> 28,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num3"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum3"/> 원</td>
+        </tr>
+        <tr>
+            <td> (알기 쉬운) 알고리즘 </td> <td> 24,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num4"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum4"/> 원</td>
+        </tr>
+        <tr>
+            <td> 선형대수학 Express </td> <td> 27,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num5"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum5"/> 원</td>
+        </tr>
+        <tr>
+            <td> 루비 프로그래밍 언어 </td> <td> 29,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num6"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum6"/> 원</td>
+        </tr>
+        <tr>
+            <td> 멀티미디어 배움터 2.0</td> <td> 25,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num7"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum7"/> 원</td>
+        </tr>
+        <tr>
+            <td> 네트워크 보안 에센셜(4판) </td> <td> 30,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num8"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum8"/> 원</td>
+        </tr>
+        <tr>
+            <td>  회로이론</td> <td> 35,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num9"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum9"/> 원</td>
+        </tr>
+        <tr>
+            <td> Big Java </td> <td> 32,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num10"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum10"/> 원</td>
+        </tr>
+        <tr>
+            <td> 경영학의 이해 </td> <td> 30,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num11"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum11"/> 원</td>
+        </tr>
+        <tr>
+            <td> 컴퓨터 배움터 </td> <td> 27,000원 </td>
+            <td> <input type="text" size= "2" value="0" oninput="calcSum()" id="num12"/> </td>
+            <td> <input type="text" size= "6" value="0" id="sum12"/> 원</td>
+        </tr>
+        
+        <tr>
+            <td> 합계 </td> <td> &nbsp; </td>
+            <td> <div id="total_num"></div> </td><!--div를 innerHTML로 변경해서 숫자 표시. 그냥 해봄-->
+            <td> <div id="total_sum"></div> </td>
+        </tr>
+    </table> <br />
+
+    <!--<input type="button" value="합계계산" onclick="calcSum()"/>  //계산 버튼 삭제, 수량 입력시 자동으로 계산기능이 활성화됨-->
+    <input type="reset" value="초기화" onclick="reset(),calcSum()"/> <!--리셋 함수로 num값들을 전부 0으로 바꾸고 clacSum함수를 호출해서 다시 계산-->
+    <input type="button" value="주문하기" onclick="deleteRow(), login_message()"/><!--수량이 0인 row는 삭제하고 ID메세지 출력-->
+    <p style="font-size:15pt;" id="message"></p>
+</form>
+</body>
+</html>

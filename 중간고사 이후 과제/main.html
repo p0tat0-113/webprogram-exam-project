@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>SM서점</title><!--제목 변경 완료-->
+<link rel="stylesheet" type="text/css" href="style-size.css"/>
+<link rel="stylesheet" type="text/css" href="style-layout.css"/>
+<link rel="stylesheet" type="text/css" href="style-presentation.css"/>
+
+</head>
+<body>
+
+<script type="text/javascript">
+    function changeiframeurl(url){
+        document.getElementById("display_area").src = url;
+    }//우측 버튼 눌렀을때 iframe src 변경
+
+    function getMyLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(myCallback);
+        } 
+        else {
+            alert("지오로케이션이 지원되지 않습니다.");
+        }
+    }
+
+    function myCallback(myPosition) {
+        var latitude = myPosition.coords.latitude,
+        longitude = myPosition.coords.longitude,
+        date = new Date(myPosition.timestamp),
+        parsedDate = date.toUTCString();
+        document.getElementById("location_display").innerHTML = '위치: 일시 '+parsedDate
+        +'에 위도 ' + latitude + ', 경도 ' + longitude + '에 있습니다.';
+    }//위치 API
+
+</script>
+
+<div class="wrap">
+<header>
+    <a id="logo" href="main.html"> SM Bookstore </a>
+    <span class="right" style="padding: 30px 10px;">
+        <a href="login.html" target="display_area">로그인</a> |
+        <a href="signup.html" target="_blank">회원가입</a>
+    </span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="domestic_books.html" target="display_area">국내도서</a></li>
+        <li><a href="foreign_books.html" target="display_area">해외번역도서</a></li>
+        <li><a href="music.html" target="display_area">음반/DVD</a></li>
+        <li class="right"><a href="order.html" target="display_area">주문하기</a></li>
+    </ul>
+</nav>
+
+<hr/>
+
+<article class="left">
+    <iframe name="display_area" id="display_area" src="images/books.jpg"
+            width="600px" height="500px"></iframe><!--id 추가함. 우측 버튼 눌렀을때 changeiframeurl 함수로 src변경하기 위함-->
+</article><!--iframe-->
+
+<aside class="right">
+    <button id="all" style="width:85px" onclick="changeiframeurl('all.html')">전체</button><br/>
+    <button id="best" style="width:85px" onclick="changeiframeurl('bestseller.html')">베스트셀러</button><br/>
+    <button id="recommend" style="width:85px" onclick="changeiframeurl('recommand.html')">추천도서</button><br/>
+    <!--메모하기 버튼 삭제 완료-->
+    <button id="location" style="width:85px" onclick="getMyLocation()">현재위치</button>
+    <div id="location_display">위치:</div>
+</aside><!--버튼 기능 전부 구현 완료-->
+
+<hr/>
+
+<footer>  
+   <div id="copyright">
+       Copyright (c) 2016 SM Bookstore Inc. All rights reserved
+   </div>
+   <div id="SNS">
+       <a href="http://facebook.com" target="_blank">
+           <img src="images/facebook.png" height="32" alt="Facebook">
+       </a>
+       <a href="http://twitter.com" target="_blank">
+           <img src="images/twitter.png" height="32" alt="Twitter">
+       </a>
+       <a href="http://plus.google.com" target="_blank">
+           <img src="images/googleplus-icon.png" height="32" alt="Google Plus">
+       </a>
+       <a href="https://github.com/p0tat0-113" target="_blank">
+        <img src="images/github.png" height="32" alt="GitHub"><!--내 깃허브 아이콘 추가 완료-->
+    </a>
+    </div>
+</footer>
+</div>
+</body>
+</html>
