@@ -1,0 +1,8 @@
+nav ul { list-style:none; font-family: Verdana, Geneva, sans-serif; font-size: 20px; font-weight: bold; color: black;}
+nav a { text-decoration:none; color:black; border-style: hidden hidden solid hidden; border-color: transparent;}
+
+
+
+#footer_background{background-color: beige;}
+#footer_yellow{color: rgba(255, 218, 8, 0.688); font-size: 15pt;}
+#footer_gray{color: gray; font-size: 10pt;}

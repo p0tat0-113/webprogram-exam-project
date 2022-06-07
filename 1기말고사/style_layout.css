@@ -1,0 +1,50 @@
+
+/*main.html*/
+.wrap {margin: 20px; margin-left: auto; margin-right: auto;}
+
+#logo_left {float: left;}
+#logo_right {float: right;}
+
+nav {margin:0 0 20px 0; float:left;} /*위 오른쪽 아래 왼쪽*/
+nav ul li {float:left; margin:0 30px; list-style:none;}/*list-style:none이 가로로 나열해주는 역할을 함*/
+nav a {display:block; padding:5px;}
+
+#footer_background{padding-top: 10px; padding-bottom: 10px; padding-left: 5px; padding-right: 5px;}
+
+
+/*home.html*/
+.home_background{background-image: url(images/뉴욕팬치.jpg); background-size: 100% 100%; overflow: hidden; min-height: 2000px; height: auto;}
+/*이미지 슬라이드 부분*/
+.windowcon{
+    overflow: hidden;
+    position: relative;
+    border: solid 5px gray;
+    margin: auto; /*margin auto로 박스 중앙 정렬*/
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 30px;
+    }
+ 
+.container{
+    width: 100%; height: 100%;
+    position:absolute;
+    left:0%;
+    }
+.container img{
+    display: block;
+    position: absolute;
+    }
+
+#left_box{float: left; background-color: antiquewhite; width: 30.3%; height: 600px; 
+    padding: 20px; padding-left: 50px; margin-left: 15.2%; border-radius: 30px;}
+#right_box{float: right; background-color: antiquewhite; width: 30.3%; height: 600px; 
+    padding: 20px; padding-left: 50px; margin-right: 15.2%; border-radius: 30px;}
+#box_title{font-size: 40pt; font-weight: 600; text-align: left; color: skyblue;}
+#box_list{font-size: 20pt; font-weight: 600; list-style-type: disc; line-height: 30pt; color: gray;}
+
+
+/*datawiki.html*/
+#left_bar{float: left; width: 20%; border: solid 5px black;}
+#left_list_bar{float: left; border: solid 5px black; width: 20%; min-height: 500px;}
+#contents{float: right; width: 70%; height: 200px; border: solid 5px black; }
+#contents_display{float: right; border: solid 5px black;}
