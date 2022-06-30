@@ -1,0 +1,83 @@
+<script>
+
+var dataset = [];
+ 
+
+dataset[1] = ["cmu", "CMU", "-", "http://domedb.perception.cs.cmu.edu/", "Image", "3-D Estimation", "-", "-", "1", "-"];
+dataset[2] = ["human-3.6m", "Human 3.6M", "The Human3.6M dataset is one of the largest motio…on progressive scan cameras to acquire video ...", "http://vision.imar.ro/human3.6m/description.php", "Image", "3-D Estimation", "3D_Human_Pose_Estimation,3D_Absolute_Human_Pose_Estimation,Human_action_generation", "-", "2", "-"];
+dataset[3] = ["apoloscape", "ApoloScape", "-", "http://apolloscape.auto/", "Image", "Autonomous Driving", "-", "-", "3", "https://capsulesbot.com/blog/2018/08/24/apolloscape-posenet-pytorch.html"];
+dataset[4] = ["cifar-10", "cifar-10", "The CIFAR-10 dataset (Canadian Institute for Adva…usive classes: airplane, automobile (but not ...", "https://www.cs.toronto.edu/~kriz/cifar.html", "Image", "Classification", "Image_Classification,Image_Generation,Graph_Classification", "60000", "4", "https://ermlab.com/en/blog/nlp/cifar-10-classification-using-keras-tutorial/"];
+dataset[5] = ["cifar-100", "cifar-100", "The CIFAR-100 dataset (Canadian Institute for Adv…20 superclasses. There are 600 images per cla...", "https://www.cs.toronto.edu/~kriz/cifar.html", "Image", "Classification", "Image_Classification,Image_Generation,Few-Shot_Image_Classification", "60000", "5", "-"];
+dataset[6] = ["omniglot", "omniglot", "Omniglot is a large dataset of hand-written chara… images and strokes data. Stroke data are coo...", "https://github.com/brendenlake/omniglot#python", "Image", "Classification", "Few-Shot_Image_Classification,Density_Estimation,Multi-Task_Learning", "38300", "6", "https://towardsdatascience.com/few-shot-learning-with-prototypical-networks-87949de03ccd"];
+dataset[7] = ["mnist", "mnist", "The MNIST database (Modified National Institute o…t is a subset of a larger NIST Special Databa...", "http://yann.lecun.com/exdb/mnist/", "Image", "Classification", "Image_Classification,Image_Generation,Domain_Adaptation", "60000", "7", "https://towardsdatascience.com/image-classification-in-10-minutes-with-mnist-dataset-54c35b77a38d"];
+dataset[8] = ["celeba", "celebA", "CelebFaces Attributes dataset contains 202,599 fa…cial attributes like hair color, gender and age.", "http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html", "Image", "Classification", "Image_Classification,Image_Generation,Face_Alignment", "-", "8", "-"];
+dataset[9] = ["svhn", "SVHN", "The Street View House Number (SVHN) is a digit cl…images are centered in the digit of interest,...", "http://ufldl.stanford.edu/housenumbers/", "Image", "Classification", "Image_Classification,Domain_Adaption,Semi-Supervised_Image_Classification", "-", "9", "-"];
+dataset[10] = ["street_style_dataset_of_matzen", "Street Style dataset of Matzen", "-", "http://streetstyle.cs.cornell.edu/", "Image", "Classification", "-", "-", "10", "-"];
+dataset[11] = ["pku_vehicleid", "PKU VehicleID (VehicleID)", "The “VehicleID” dataset contains CARS captured du…e entire dataset. Each image is attached with...", "https://pkuml.org/resources/pku-vehicleid.html", "Image", "Classification", "Vehicle_Re-Identification", "-", "11", "-"];
+dataset[12] = ["the_in-shop_clothes", "The In-shop Clothes", "-", "http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/InShopRetrieval.html", "Image", "Classification", "-", "-", "12", "-"];
+dataset[13] = ["taskonomy", "Taskonomy", "Taskonomy provides a large and high-quality datas…, and MIT Places. &nbsp;Globally consistent c...", "http://taskonomy.stanford.edu/", "Image", "Depth Estimation", "Depth_Estimation,Surface_Normals_Estimation", "-", "13", "-"];
+dataset[14] = ["cuhk_face_sketch_database", "CUHK Face Sketch Database (CUFS)", "-", "http://www.ee.cuhk.edu.hk/~xgwang/datasets.html", "Image", "Face Sketch", "-", "-", "14", "-"];
+dataset[15] = ["chestx-ray8", "ChestX-ray8", "ChestX-ray8 is a medical imaging dataset which co…ined from the text radiological reports via N...", "https://www.kaggle.com/nih-chest-xrays/data", "Image", "Medical Classification", "Image_Classification,Computed_Tomography(CT)", "-", "15", "-"];
+dataset[16] = ["kitti", "kitti", "KITTI (Karlsruhe Institute of Technology and Toyo…orded with a variety of sensor modalities, in...", "http://www.cvlibs.net/datasets/kitti/", "Image", "Object Detection", "Object_Detection,Semantice_Segmentation,Image_Super-Resolution", "&gt;100 GB of data", "16", "https://github.com/joseph-zhang/KITTI-TorchLoader"];
+dataset[17] = ["pascal_voc_2012", "pascal voc 2012", "-", "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/", "Image", "Object Detection", "-", "-", "17", "-"];
+dataset[18] = ["cityscapes", "Cityscapes", "Cityscapes is a large-scale database which focuse…lat surfaces, humans, vehicles, constructions...", "https://www.cityscapes-dataset.com/", "Image", "Object Detection", "Image_Generation,Semantic_Segmentation,Image-to-Image_Translation", "25000", "18", "-"];
+dataset[19] = ["aflw", "AFLW", "The Annotated Facial Landmarks in the Wild (AFLW)…nder) as well as general imaging and environm...", "https://www.tugraz.at/institute/icg/research/team-bischof/lrs/downloads/aflw/", "Image", "Object Detection", "Face_Alignment,Facial_Landmark's_Detection,Low-Light_Image_Enhancement", "-", "19", "-"];
+dataset[20] = ["caltech_101", "Caltech 101", "The Caltech101 dataset contains images from 101 o…ries. For each object category, there are abo...", "http://www.vision.caltech.edu/Image_Datasets/CaltechPedestrians/", "Image", "Object Detection", "Fine-Grained_Image_Classification,Semi-Supervised_Image_Classificatino,Density_Estimation", "9146", "20", "-"];
+dataset[21] = ["caltech_256", "Caltech 256", "Caltech-256 is an object recognition dataset cont…least 80 images. The dataset is a superset of...", "https://authors.library.caltech.edu/7694/", "Image", "Object Detection", "Few-Shot_Image_Classification,Semi-Supervised_Image_Classification", "30607", "21", "-"];
+dataset[22] = ["amazon", "Amazon", "-", "https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/cd-create-dataset.html", "Image", "Object Detection", "-", "-", "22", "-"];
+dataset[23] = ["nlpr", "NLPR", "The NLPR dataset for salient object detection con…., offices, campuses, streets and supermarkets).", "https://www.abbreviationfinder.org/ko/acronyms/nlpr.html", "Image", "Object Detection", "RGB-D_Salient_Object_Detection", "-", "23", "-"];
+dataset[24] = ["coco", "coco", "The MS COCO (Microsoft Common Objects in Context)… version of MS COCO dataset was released in 2...", "https://cocodataset.org/#home", "Image", "Object Recognition", "Pose_Estimation,Object_Detection,Semantic_Segmentation", "2500000", "24", "https://medium.com/fullstackai/how-to-train-an-ob…ith-your-own-coco-dataset-in-pytorch-319e7090da5"];
+dataset[25] = ["imagenet", "imagenet", "The ImageNet dataset contains 14,197,122 annotate…age classification and object detection. The ...", "http://image-net.org/about-overview", "Image", "Object Recognition", "Image_Classification,Image_Generation,Few-Shot_Learning", "14197122", "25", "-"];
+dataset[26] = ["sun", "sun", "-", "https://vision.princeton.edu/projects/2010/SUN/", "Image", "Object Recognition", "-", "131,067", "26", "-"];
+dataset[27] = ["lsun", "lsun", "The Large-scale Scene Understanding (LSUN) challe…such as dining room, bedroom, chicken, outdoo...", "https://www.yf.io/p/lsun", "Image", "Saliency Detection", "Image_Generation", "-", "27", "-"];
+dataset[28] = ["replica", "Replica", "The Replica Dataset is a dataset of high quality …urface information, planar segmentation as we...", "https://github.com/facebookresearch/Replica-Dataset", "Image", "Scene Generation", "Domain_Adaption,Visual_Navigation,Scene_Generation", "-", "28", "-"];
+dataset[29] = ["scannet", "scannet", "ScanNet is an instance-level indoor RGB-D dataset…s collected 1513 annotated scans with an appr...", "http://www.scan-net.org/", "Image", "Semantic Segmentation", "Semantic_Segmentation,Depth_Estimation,3D_Reconstruction", "-", "29", "-"];
+dataset[30] = ["nyu_depth_v1_v2", "nyu depth V1, V2", "-", "https://cs.nyu.edu", "Image", "Semantic Segmentation", "-", "-", "30", "-"];
+dataset[31] = ["lip", "lip", "The LIP (Look into Person) dataset is a large-sca…2D human poses with 16 key points. The images...", "http://sysu-hcp.net/lip/index.php", "Image", "Semantic Segmentation", "Semantic_Segmentation", "-", "31", "-"];
+dataset[32] = ["ade", "ADE", "The ADE20K semantic segmentation dataset contains…clude stuffs like sky, road, grass, and discr...", "https://groups.csail.mit.edu/vision/datasets/ADE20K/index.html", "Image", "Semantic Segmentation", "Semantic_Segmentation,Image-to-Image_Translation,Scene_Understanding", "-", "32", "-"];
+dataset[33] = ["ffhq", "ffhq", "Flickr-Faces-HQ (FFHQ) consists of 70,000 high-qu…ssories such as eyeglasses, sunglasses, hats,...", "https://github.com/NVlabs/ffhq-dataset", "Image", "Super Resolution", "Image_Generation,Image_Super-Resolution,Image_Inpainting", "-", "33", "-"];
+dataset[34] = ["ucf", "ucf", "UCF101 dataset is an extension of UCF50 and consi… Human-object interactions, Playing musical i...", "https://www.crcv.ucf.edu/data/UCF101.php#Results_on_UCF101", "Video", "Action Recognition", "Temporal_Action_Localization,Action_Recognition,Action_Detection", "-", "1", "-"];
+dataset[35] = ["activitynet", "Activitynet", "The ActivityNet dataset contains 200 different ty…ms of both the number of activity categories ...", "http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html", "Video", "Action Recognition", "Temporal_Action_Localization,Action_Recognition,Action_Classification", "-", "2", "-"];
+dataset[36] = ["ntu", "ntu", "-", "http://rose1.ntu.edu.sg/datasets/actionrecognition.asp", "Video", "Action Recognition", "-", "-", "3", "-"];
+dataset[37] = ["kinetics", "kinetics", "The Kinetics dataset is a large-scale, high-quali…clips for each action class. Each video clip ...", "https://arxiv.org/abs/1705.06950", "Video", "Action Recognition", "Temporal_Action_Localization,Video_Classification,Action_Recognition", "-", "4", "-"];
+dataset[38] = ["youtube_8m_segments_dataset", "YouTube-8M Segments Dataset", "The YouTube-8M dataset is a large scale video dat…set, and test set. In the training set, each ...", "http://research.google.com/youtube8m/index.html", "Video", "Classification", "Video_Classification,Video_Prediction", "8 million", "5", "-"];
+dataset[39] = ["davis_16", "davis 16", "DAVIS16 is a dataset for video object segmentatio…). Per-frame pixel-wise annotations are offered.", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "Video_Object_Segmentation,Video_Salient_Object_Detection,Unsupervised_Video_Object_Segmentation", "-", "6", "-"];
+dataset[40] = ["davis_17", "davis 17", "DAVIS17 is a dataset for video object segmentatio… for training, 30 for validation, 60 for testing", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "Semantic_Segmentation,Video_Object_Segmentation,Referring_Expression_Segmentation", "-", "7", "-"];
+dataset[41] = ["davis_18", "davis 18", "-", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "-", "-", "8", "-"];
+dataset[42] = ["davis_19", "davis 19", "-", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "-", "-", "9", "-"];
+dataset[43] = ["mot", "MOT", "-", "https://motchallenge.net/", "Video", "Object Tracking", "-", "-", "10", "-"];
+dataset[44] = ["vot", "vot", "-", "https://www.votchallenge.net/index.html", "Video", "Object Tracking", "-", "-", "11", "-"];
+dataset[45] = ["dexter", "dexter", "-", "http://archive.ics.uci.edu/ml//datasets/Dexter", "Text", "Classification", "-", "2600", "1", "-"];
+dataset[46] = ["ubuntu_dialogue", "ubuntu dialogue", "Ubuntu Dialogue Corpus (UDC) is a dataset contain…ilding dialogue managers based on neural lang...", "https://ubuntudialogue.org/", "Text", "Dialogue Generation", "Dialogue_Generation,Conversational_Response_Selection,Answer_Selection", "-", "2", "-"];
+dataset[47] = ["wmt19", "wmt19", "-", "http://www.statmt.org/wmt19/", "Text", "Machine Translation", "-", "-", "3", "-"];
+dataset[48] = ["wmt18", "wmt18", "WMT 2018 is a collection of datasets used in shar…on. &nbsp;&nbsp;&nbsp;The conference featured...", "http://www.statmt.org/wmt18/papers.html", "Text", "Machine Translation", "Machine_Translation", "-", "4", "-"];
+dataset[49] = ["wmt17", "wmt17", "-", "http://www.statmt.org/wmt17/results.html", "Text", "Machine Translation", "-", "-", "5", "-"];
+dataset[50] = ["wmt16", "wmt16", "WMT 2016 is a collection of datasets used in shar…red tasks: &nbsp;&nbsp;&nbsp;a news translati...", "http://www.statmt.org/wmt16/", "Text", "Machine Translation", "Machine_Translation,Unsupervised_Machine_Translation", "-", "6", "-"];
+dataset[51] = ["wmt15", "wmt15", "WMT 2015 is a collection of datasets used in shar…quality estimation task, &nbsp;an automatic p...", "http://www.statmt.org/wmt15/", "Text", "Machine Translation", "Machine_Translation", "-", "7", "-"];
+dataset[52] = ["wmt14", "wmt14", "WMT 2014 is a collection of datasets used in shar…ics task, &nbsp;a medical text translation task.", "http://www.statmt.org/wmt14/", "Text", "Machine Translation", "Machine_Translation,Unsupervised_Machine_Translation", "-", "8", "-"];
+dataset[53] = ["semeval-2016", "SemEval-2016", "-", "https://alt.qcri.org/semeval2016/index.php?id=tasks", "Text", "Word Sentiment", "-", "-", "9", "-"];
+dataset[54] = ["bfm", "BFM", "-", "https://faces.dmi.unibas.ch/bfm/?nav=1-0&amp;id=basel_face_model", "3-D Image", "3-D Estimation", "-", "-", "1", "-"];
+dataset[55] = ["pix3d", "Pix3D", "The Pix3D dataset is a large-scale benchmark of d…struction, retrieval, viewpoint estimation, etc.", "http://pix3d.csail.mit.edu/", "3-D Image", "Classification", "3D_Shape_Reconstruction,3D_Shape_Modeling,3D_Shape_Classification", "-", "2", "-"];
+dataset[56] = ["shrec", "shrec", "The SHREC dataset contains 14 dynamic gestures pe… and 10 times by each participant in two way:...", "http://tosca.cs.technion.ac.il/book/shrec_robustness2010.html", "3-D Image", "Object Recognition", "Gesture_Recognition,Hand_Gesture_Recognition,Skeleton_Based_Action_Recognition", "-", "3", "-"];
+dataset[57] = ["shapenetcore", "shapenetCore", "-", "https://www.shapenet.org/", "3-D Image", "Semantic Segmentation", "-", "-", "4", "-"];
+dataset[58] = ["faust", "faust", "The FAUST dataset is a dataset of real 3D scans o…100 non-watertight meshes with 6,890 nodes each.", "http://faust.is.tue.mpg.de/", "3-D Image", "Semantic Segmentation", "Semantic_Segmentation,3D_Reconstruction,3D_Point_Cloud_Matching", "-", "5", "-"];
+dataset[59] = ["scape", "Scape", "-", "https://ai.stanford.edu/~drago/Projects/scape/scape.html", "3-D Image", "3-D Estimation", "-", "-", "6", "-"];
+dataset[60] = ["voxceleb", "VoxCeleb", "-", "http://www.robots.ox.ac.uk/~vgg/data/voxceleb/", "Sound", "Video Reconstruction", "-", "-", "1", "-"];
+ 
+function str_descending(a, b) { // 내림차순  
+    var numA = (a[0]);
+    var numB = (b[0]);  
+    return numB < numA ? 1 : -1;
+}
+
+function str_ascending(a, b) { // 내림차순  
+    var numA = (a[0]);
+    var numB = (b[0]);  
+    return numB > numA ? 1 : -1;
+}
+
+//console.log(dataset.sort(str_descending));
+console.log(dataset.sort(str_ascending));
+
+//console.log(dataset[1][1]);
+</script>
