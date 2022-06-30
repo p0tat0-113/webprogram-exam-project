@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+   
+<head>
+    <link rel="stylesheet" type="text/css" href="style_layout.css">
+    <link rel="stylesheet" type="text/css" href="style_color.css">
+    <meta author="소프트웨어학과 202121028 김동우">
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+    <div class="background">
+
+        <p class="big_title">Forum🗣️</p>
+
+        <div id="contents_title">
+            <p id="contents_title_text"></p>
+            <p id="contents_title_like"></p>
+            <p id="contents_title_date"></p>
+            
+        </div>
+
+        <form>
+            <textarea name="contents" id="contents_contents" value="" rows="30" placeholder="내용" disabled></textarea>
+        </form>
+
+        <div id="bottom_buttons3">
+            <input type="button" value="목록" class="button7" onclick="go_to_list()">
+            <input type="button" value="좋아요" class="button7" onclick="like_pressed()">
+        </div>
+
+        <div id="bottom_buttons4">
+            <a><input type="button" value="삭제" class="button4" onclick="before_delete_this()"></a>
+            <a><input type="button" value="수정" class="button4" onclick="go_to_edit()"></a>
+        </div>
+    </div>
+</body>
+
+    <script>
+        
+        var output = localStorage.getItem("board");
+        var board = JSON.parse(output);//localstorage에 저장된 board를 불러옴
+
+        function set_values(){
+            num = parseInt(window.localStorage.getItem("forum_value_1"));
+
+            var title = document.getElementById("contents_title_text");//DOM
+            var contents = document.getElementById("contents_contents");
+            var date = document.getElementById("contents_title_date");
+            var like = document.getElementById("contents_title_like");
+            title.innerHTML = "&nbsp;"+board[num][0];//board에서 가져온 배열 값 하나씩 넣어줌
+            contents.value = board[num][1];
+            date.innerHTML = "작성일: "+board[num][2]+"&nbsp;|&nbsp;좋아요:&nbsp;";
+            like.innerHTML = board[num][3]+"&nbsp;";
+        }
+        set_values();
+
+        function like_pressed() {//좋아요 버튼 눌렀을때 실행
+            var ddd = document.getElementById("contents_title_like");
+            var aaa = parseInt(ddd.innerText);
+            aaa = aaa+1;
+            ddd.innerHTML = aaa+"&nbsp;";//이렇게 해서 일단 화면에 보이는 좋아요 값을 1씩 올려줌
+            
+            num = parseInt(window.localStorage.getItem("forum_value_1"));//6forum에서 보내준 인덱스 값을 localstorage에서 가져와서 num에 저장함
+            board[num][3] = parseInt(board[num][3]) + 1;//board의 해당 글 like값에 직접 1씩 더해줌
+
+            apply_change();//like값이 변경된 board를 다시 localstorage에 저장해서 변경사항을 반영함
+            //이렇게 해서 6forum의 글 목록에도 늘어난 좋아요 숫자가 잘 반영됨.
+        }
+
+        function go_to_edit(){//글 편집 페이지로 가려면 비밀번호 입력하게 함
+            var admin_pwd = "1234";
+            while(true){
+                var input_pwd = prompt("관리자 비밀번호를 입력하세요.",);
+                if(admin_pwd == input_pwd){
+                    location.replace("6-2forum-edit.html");//이동
+                    break;
+                }
+                else if(input_pwd == null){
+                    break;
+                    
+                }
+            }
+        }
+
+        function before_delete_this(){//삭제하기 전에 비밀번호 입력하게 함
+            var admin_pwd = "1234";
+            while(true){
+                var input_pwd = prompt("관리자 비밀번호를 입력하세요.",);
+                if(admin_pwd == input_pwd){
+                    delete_this();
+                    break;
+                }
+                else if(input_pwd == null){
+                    break;
+                }
+            }
+        }
+
+        function delete_this(){//before_delete_this() 함수에서 넘어와서 실행
+            alert("'"+board[num][0]+"'"+" 글을 삭제합니다.")
+
+            num = parseInt(window.localStorage.getItem("forum_value_1"));
+            board.splice(num,1);//.splice쓰면 자동으로 뒤에 있는 배열들 인덱스 땡겨주네 개꿀딱~
+
+            apply_change();//삭제하고 localstorage에 borad의 변경사항 저장
+
+            location.replace("6forum.html");
+        }
+
+        function go_to_list(){
+            location.replace("6forum.html");
+        }
+
+        function apply_change(){
+            window.localStorage.setItem("board",JSON.stringify(board));//localstorage에 배열을 저장하는 방법
+        }
+    </script>
+</html>

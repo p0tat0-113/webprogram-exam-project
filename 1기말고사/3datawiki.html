@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <link rel="stylesheet" type="text/css" href="style_layout.css">
+    <link rel="stylesheet" type="text/css" href="style_color.css">
+    <meta author="소프트웨어학과 202121028 김동우">
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+    <div class="background">
+
+        <p class="big_title">Data Wiki🔎</p>
+
+        <div id="left_bar"><!--정렬 옵션을 선택하는 버튼들 모임-->
+            <div id="left_bar_innerbox">
+            <form>
+                <input type="text" class="search1" id="search_window" value="" placeholder="  여기에 검색어 입력" oninput="search()">
+                <select class="select1" name="search_option" size="1" id="search_option"><option>name</option><option>task</option></select><br><br>
+
+                <input type="button" class="button5" value="이름순↑↓" onclick="sort_id()" ><br><br>
+
+                <input type="button" class="button5-1" value="category 선택" onclick="make_button(4)">
+                <select class="select1" name="category" size="1" id="category"><option>Image</option><option>Video</option><option>Text</option><option>3-D Image</option><option>Sound</option></select><br><br>
+
+                <input type="button" class="button5" value="task순↑↓" onclick="sort_task()"><br><br>
+
+                <input type="button" class="button5-1" value="tutorial O/X 선택" onclick="make_button(9)">
+                <select class="select1" name="tutorial" size="1" id="tutorial"><option value="yes">O</option><option value="-">X</option></select>         
+            </form>
+            </div>
+        </div>
+
+        <div id="contents">
+            <span style="font-size:30px; font-weight: 600; color: grey;">여기에 내용 표시</span>
+        </div><!--좌측 리스트 바에 있는 버튼들을 클릭하면 여기에 세부정보가 뜸-->
+
+        <iframe src="" name="contents_display" id="contents_display"></iframe><!--contents박스에 뜨는 세부정보 중 link와 tutorial링크를 눌렀을때 사용되는 iframe-->
+
+        <div id="left_list_bar"></div><!--여기에 버튼들이 동적으로 생성됨-->
+    </div>
+</body>
+
+
+    <script> 
+    
+        function button_to_contents(num){  //좌측 리스트 바에 뜨는 버튼을 누르면 contents박스에 그 세부정보를 표시시켜주는 함수. 여기서 num은 몇번째 줄인지를 나타낸다. 좌측 리스트 바에 뜨는 버튼들의 onclick 속성에 이 함수가 들어가있음. 
+            var contents = document.getElementById("contents");//DOM
+            contents.innerHTML = 
+            "<span class='contents_box_title'>name: </span>" + dataset[num][1]+"<br>"+
+            "<span class='contents_box_title'>category: </span>" + dataset[num][4]+"<br>"+
+            "<span class='contents_box_title'>instance: </span>" + dataset[num][7]+"<br>"+
+            "<span class='contents_box_title'>task: </span>" + dataset[num][6]+"<br>"+
+            "<span class='contents_box_title'>description: </span>" + dataset[num][2]+"<br>"+
+            "<span class='contents_box_title'>link: </span><a href='"+dataset[num][3]+"' target='contents_display'>"+dataset[num][3]+"</a>"+
+            "&nbsp;<a href='"+dataset[num][3]+"' target='contents_display'><input type='button' value='open page' class='button6'></a><br>"+
+            "<span class='contents_box_title'>tutorial: </span><a href='"+dataset[num][9]+"' target='contents_display'>"+dataset[num][9]+"</a>"+
+            "&nbsp;<a href='"+dataset[num][9]+"' target='contents_display'><input type='button' value='open page' class='button6'></a>";
+            document.getElementById("contents_display").src = dataset[num][3];//하단 iframe에 링크를 띄움
+        }
+
+        function make_button(mode){//dataset 리스트 버튼을 동적생성 하는 함수
+            var length = (dataset.length);//첫 줄 th빼고 60개
+            var list_bar = document.getElementById("left_list_bar");
+            var final_code="";//이게 좌측 리스트 박스에 innerHTML하게 되는 최종 코드
+
+            for(var count=0; count<length; count++){
+                if(mode == 0) {//id로 정렬
+                    var name = dataset[count][1];
+                }
+                if(mode == 6){//task로 정렬
+                    var name = dataset[count][6];
+                    if(name == "-") {
+                        continue;
+                    }
+                }
+                if(mode == 4){//category 검색
+                    var name = dataset[count][1];
+                    var option = document.getElementById("category")
+                    var category = option.options[option.selectedIndex].text;//select의 option 텍스트를 가져오는 방법
+
+                    var comp = dataset[count][4];//[4]카테고리
+                    if(comp != category){//현재[count]행의 카테고리가 사용자가 선택한 카테고리와 다르면 반복문을 진행하지 않고 다시 처음으로 돌아감
+                        continue;
+                    }
+                }
+                if(mode == 9){//튜토리얼 유/무 검색
+                    var name = dataset[count][1];
+                    var option = document.getElementById("tutorial")
+                    var tutorial = option.options[option.selectedIndex].value;//select의 option value를 가져오는 방법
+
+                    var comp = dataset[count][9];//[9]튜토리얼
+                    if(tutorial == "-"){ //no라면
+                        if(comp == "-"){
+                            //pass; 자바스크립트에는 pass가 따로 없네;;
+                        }
+                        else{
+                            continue;
+                        }
+                    }
+                    else{ //yes라면
+                        if(comp == "-"){
+                            continue;
+                        }
+                        else{
+                            //pass;
+                        }
+                    }
+                }
+                var code = "<input type='button' class='button6' value='"+name+"' onclick='button_to_contents("+count+")'><br>";
+                final_code=final_code+code;
+            }
+            list_bar.innerHTML=final_code;
+        }
+
+        function id_descending(a, b) { // 내림차순  
+            var numA = (a[0]);
+            var numB = (b[0]);  
+            return numB < numA ? 1 : -1;
+        }
+        function id_ascending(a, b) { // 내림차순  
+            var numA = (a[0]);
+            var numB = (b[0]);  
+            return numB > numA ? 1 : -1;
+        }
+        function task_descending(a, b) { // 내림차순  
+            var numA = (a[6]);
+            var numB = (b[6]);  
+            return numB < numA ? 1 : -1;
+        }
+        function task_ascending(a, b) { // 내림차순  
+            var numA = (a[6]);
+            var numB = (b[6]);  
+            return numB > numA ? 1 : -1;
+        }
+  
+        var id_bull = 0;
+        function sort_id(){//버튼을 다시 눌렀을때 내림차순/올림차순을 전환하기 위함. 현재 정렬 방식 상태를 id_bull에 저장함
+            if(id_bull == 0){
+                dataset.sort(id_descending);
+                id_bull=1;
+            }
+            else {
+                dataset.sort(id_ascending);
+                id_bull=0;
+            }
+            setTimeout(make_button(0),100);//안정적인 동작을 위해서 시간 지연 줌.
+        }
+        var task_bull = 0;
+        function sort_task(){//버튼을 다시 눌렀을때 내림차순/올림차순을 전환하기 위함. 현재 정렬 방식 상태를 task_bull에 저장함
+            if(task_bull == 0){
+                dataset.sort(task_descending);
+                task_bull=1;
+            }
+            else {
+                dataset.sort(task_ascending);
+                task_bull=0;
+            }
+            setTimeout(make_button(6),100);
+        }
+
+        function search(){//dataset 검색 함수
+            var input = document.getElementById("search_window");
+            console.log(input.value.toUpperCase());
+
+            var option = document.getElementById("search_option")
+            var search_option = option.options[option.selectedIndex].text;
+            console.log(search_option);
+
+            var length = (dataset.length);//첫 줄 th빼고 60개
+            var list_bar = document.getElementById("left_list_bar");
+            var final_code="";//이게 좌측 리스트 박스에 innerHTML하게 되는 최종 코드
+
+            for(var count=0; count<length; count++){
+                if(search_option == "name"){//검색 옵션 거르기 검색옵션:name
+                    var name = dataset[count][1];
+                    var comp = dataset[count][0];
+                }
+                else {//검색옵션:task
+                    var name = dataset[count][6];
+                    var comp = dataset[count][6];
+                }
+                comp = comp.toUpperCase();//중요! toUpperCase()로 comp와 input 둘다 대문자로 만들어서 대소문자 상관없이 검색가능하게 함
+                if(name == "-") {//task목록 중에서 "-" 제거
+                    continue;
+                }
+
+                var result = comp.includes(input.value.toUpperCase());//include를 이용해서 각 셀에 사용자가 입력한 문자열이 포함되어 있는지 확인
+                if(result == true){
+                    //pass
+                }
+                else{
+                    continue;
+                }
+
+                var code = "<input type='button' class='button6' value='"+name+"' onclick='button_to_contents("+count+")'><br>";
+                final_code=final_code+code;
+            }
+            list_bar.innerHTML=final_code;
+        }
+
+            
+        setTimeout(sort_id,100);//처음 페이지에 들어왔을때부터 dataset리스트들이 떠 있어야 한다는 조건 때문에 넣음.
+
+        var dataset = [];
+        dataset[0] = ["cmu", "CMU", "-", "http://domedb.perception.cs.cmu.edu/", "Image", "3-D Estimation", "-", "-", "1", "-"];
+        dataset[1] = ["human-3.6m", "Human 3.6M", "The Human3.6M dataset is one of the largest motio…on progressive scan cameras to acquire video ...", "http://vision.imar.ro/human3.6m/description.php", "Image", "3-D Estimation", "3D_Human_Pose_Estimation,3D_Absolute_Human_Pose_Estimation,Human_action_generation", "-", "2", "-"];
+        dataset[2] = ["apoloscape", "ApoloScape", "-", "http://apolloscape.auto/", "Image", "Autonomous Driving", "-", "-", "3", "https://capsulesbot.com/blog/2018/08/24/apolloscape-posenet-pytorch.html"];
+        dataset[3] = ["cifar-10", "cifar-10", "The CIFAR-10 dataset (Canadian Institute for Adva…usive classes: airplane, automobile (but not ...", "https://www.cs.toronto.edu/~kriz/cifar.html", "Image", "Classification", "Image_Classification,Image_Generation,Graph_Classification", "60000", "4", "https://ermlab.com/en/blog/nlp/cifar-10-classification-using-keras-tutorial/"];
+        dataset[4] = ["cifar-100", "cifar-100", "The CIFAR-100 dataset (Canadian Institute for Adv…20 superclasses. There are 600 images per cla...", "https://www.cs.toronto.edu/~kriz/cifar.html", "Image", "Classification", "Image_Classification,Image_Generation,Few-Shot_Image_Classification", "60000", "5", "-"];
+        dataset[5] = ["omniglot", "omniglot", "Omniglot is a large dataset of hand-written chara… images and strokes data. Stroke data are coo...", "https://github.com/brendenlake/omniglot#python", "Image", "Classification", "Few-Shot_Image_Classification,Density_Estimation,Multi-Task_Learning", "38300", "6", "https://towardsdatascience.com/few-shot-learning-with-prototypical-networks-87949de03ccd"];
+        dataset[6] = ["mnist", "mnist", "The MNIST database (Modified National Institute o…t is a subset of a larger NIST Special Databa...", "http://yann.lecun.com/exdb/mnist/", "Image", "Classification", "Image_Classification,Image_Generation,Domain_Adaptation", "60000", "7", "https://towardsdatascience.com/image-classification-in-10-minutes-with-mnist-dataset-54c35b77a38d"];
+        dataset[7] = ["celeba", "celebA", "CelebFaces Attributes dataset contains 202,599 fa…cial attributes like hair color, gender and age.", "http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html", "Image", "Classification", "Image_Classification,Image_Generation,Face_Alignment", "-", "8", "-"];
+        dataset[8] = ["svhn", "SVHN", "The Street View House Number (SVHN) is a digit cl…images are centered in the digit of interest,...", "http://ufldl.stanford.edu/housenumbers/", "Image", "Classification", "Image_Classification,Domain_Adaption,Semi-Supervised_Image_Classification", "-", "9", "-"];
+        dataset[9] = ["street_style_dataset_of_matzen", "Street Style dataset of Matzen", "-", "http://streetstyle.cs.cornell.edu/", "Image", "Classification", "-", "-", "10", "-"];
+        dataset[10] = ["pku_vehicleid", "PKU VehicleID (VehicleID)", "The “VehicleID” dataset contains CARS captured du…e entire dataset. Each image is attached with...", "https://pkuml.org/resources/pku-vehicleid.html", "Image", "Classification", "Vehicle_Re-Identification", "-", "11", "-"];
+        dataset[11] = ["the_in-shop_clothes", "The In-shop Clothes", "-", "http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/InShopRetrieval.html", "Image", "Classification", "-", "-", "12", "-"];
+        dataset[12] = ["taskonomy", "Taskonomy", "Taskonomy provides a large and high-quality datas…, and MIT Places. &nbsp;Globally consistent c...", "http://taskonomy.stanford.edu/", "Image", "Depth Estimation", "Depth_Estimation,Surface_Normals_Estimation", "-", "13", "-"];
+        dataset[13] = ["cuhk_face_sketch_database", "CUHK Face Sketch Database (CUFS)", "-", "http://www.ee.cuhk.edu.hk/~xgwang/datasets.html", "Image", "Face Sketch", "-", "-", "14", "-"];
+        dataset[14] = ["chestx-ray8", "ChestX-ray8", "ChestX-ray8 is a medical imaging dataset which co…ined from the text radiological reports via N...", "https://www.kaggle.com/nih-chest-xrays/data", "Image", "Medical Classification", "Image_Classification,Computed_Tomography(CT)", "-", "15", "-"];
+        dataset[15] = ["kitti", "kitti", "KITTI (Karlsruhe Institute of Technology and Toyo…orded with a variety of sensor modalities, in...", "http://www.cvlibs.net/datasets/kitti/", "Image", "Object Detection", "Object_Detection,Semantice_Segmentation,Image_Super-Resolution", "&gt;100 GB of data", "16", "https://github.com/joseph-zhang/KITTI-TorchLoader"];
+        dataset[16] = ["pascal_voc_2012", "pascal voc 2012", "-", "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/", "Image", "Object Detection", "-", "-", "17", "-"];
+        dataset[17] = ["cityscapes", "Cityscapes", "Cityscapes is a large-scale database which focuse…lat surfaces, humans, vehicles, constructions...", "https://www.cityscapes-dataset.com/", "Image", "Object Detection", "Image_Generation,Semantic_Segmentation,Image-to-Image_Translation", "25000", "18", "-"];
+        dataset[18] = ["aflw", "AFLW", "The Annotated Facial Landmarks in the Wild (AFLW)…nder) as well as general imaging and environm...", "https://www.tugraz.at/institute/icg/research/team-bischof/lrs/downloads/aflw/", "Image", "Object Detection", "Face_Alignment,Facial_Landmark's_Detection,Low-Light_Image_Enhancement", "-", "19", "-"];
+        dataset[19] = ["caltech_101", "Caltech 101", "The Caltech101 dataset contains images from 101 o…ries. For each object category, there are abo...", "http://www.vision.caltech.edu/Image_Datasets/CaltechPedestrians/", "Image", "Object Detection", "Fine-Grained_Image_Classification,Semi-Supervised_Image_Classificatino,Density_Estimation", "9146", "20", "-"];
+        dataset[20] = ["caltech_256", "Caltech 256", "Caltech-256 is an object recognition dataset cont…least 80 images. The dataset is a superset of...", "https://authors.library.caltech.edu/7694/", "Image", "Object Detection", "Few-Shot_Image_Classification,Semi-Supervised_Image_Classification", "30607", "21", "-"];
+        dataset[21] = ["amazon", "Amazon", "-", "https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/cd-create-dataset.html", "Image", "Object Detection", "-", "-", "22", "-"];
+        dataset[22] = ["nlpr", "NLPR", "The NLPR dataset for salient object detection con…., offices, campuses, streets and supermarkets).", "https://www.abbreviationfinder.org/ko/acronyms/nlpr.html", "Image", "Object Detection", "RGB-D_Salient_Object_Detection", "-", "23", "-"];
+        dataset[23] = ["coco", "coco", "The MS COCO (Microsoft Common Objects in Context)… version of MS COCO dataset was released in 2...", "https://cocodataset.org/#home", "Image", "Object Recognition", "Pose_Estimation,Object_Detection,Semantic_Segmentation", "2500000", "24", "https://medium.com/fullstackai/how-to-train-an-ob…ith-your-own-coco-dataset-in-pytorch-319e7090da5"];
+        dataset[24] = ["imagenet", "imagenet", "The ImageNet dataset contains 14,197,122 annotate…age classification and object detection. The ...", "https://www.image-net.org/", "Image", "Object Recognition", "Image_Classification,Image_Generation,Few-Shot_Learning", "14197122", "25", "-"];
+        dataset[25] = ["sun", "sun", "-", "https://vision.princeton.edu/projects/2010/SUN/", "Image", "Object Recognition", "-", "131,067", "26", "-"];
+        dataset[26] = ["lsun", "lsun", "The Large-scale Scene Understanding (LSUN) challe…such as dining room, bedroom, chicken, outdoo...", "https://www.yf.io/p/lsun", "Image", "Saliency Detection", "Image_Generation", "-", "27", "-"];
+        dataset[27] = ["replica", "Replica", "The Replica Dataset is a dataset of high quality …urface information, planar segmentation as we...", "https://github.com/facebookresearch/Replica-Dataset", "Image", "Scene Generation", "Domain_Adaption,Visual_Navigation,Scene_Generation", "-", "28", "-"];
+        dataset[28] = ["scannet", "scannet", "ScanNet is an instance-level indoor RGB-D dataset…s collected 1513 annotated scans with an appr...", "http://www.scan-net.org/", "Image", "Semantic Segmentation", "Semantic_Segmentation,Depth_Estimation,3D_Reconstruction", "-", "29", "-"];
+        dataset[29] = ["nyu_depth_v1_v2", "nyu depth V1, V2", "-", "https://cs.nyu.edu", "Image", "Semantic Segmentation", "-", "-", "30", "-"];
+        dataset[30] = ["lip", "lip", "The LIP (Look into Person) dataset is a large-sca…2D human poses with 16 key points. The images...", "http://sysu-hcp.net/lip/index.php", "Image", "Semantic Segmentation", "Semantic_Segmentation", "-", "31", "-"];
+        dataset[31] = ["ade", "ADE", "The ADE20K semantic segmentation dataset contains…clude stuffs like sky, road, grass, and discr...", "https://groups.csail.mit.edu/vision/datasets/ADE20K/index.html", "Image", "Semantic Segmentation", "Semantic_Segmentation,Image-to-Image_Translation,Scene_Understanding", "-", "32", "-"];
+        dataset[32] = ["ffhq", "ffhq", "Flickr-Faces-HQ (FFHQ) consists of 70,000 high-qu…ssories such as eyeglasses, sunglasses, hats,...", "https://github.com/NVlabs/ffhq-dataset", "Image", "Super Resolution", "Image_Generation,Image_Super-Resolution,Image_Inpainting", "-", "33", "-"];
+        dataset[33] = ["ucf", "ucf", "UCF101 dataset is an extension of UCF50 and consi… Human-object interactions, Playing musical i...", "https://www.crcv.ucf.edu/data/UCF101.php#Results_on_UCF101", "Video", "Action Recognition", "Temporal_Action_Localization,Action_Recognition,Action_Detection", "-", "1", "-"];
+        dataset[34] = ["activitynet", "Activitynet", "The ActivityNet dataset contains 200 different ty…ms of both the number of activity categories ...", "http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html", "Video", "Action Recognition", "Temporal_Action_Localization,Action_Recognition,Action_Classification", "-", "2", "-"];
+        dataset[35] = ["ntu", "ntu", "-", "http://rose1.ntu.edu.sg/datasets/actionrecognition.asp", "Video", "Action Recognition", "-", "-", "3", "-"];
+        dataset[36] = ["kinetics", "kinetics", "The Kinetics dataset is a large-scale, high-quali…clips for each action class. Each video clip ...", "https://arxiv.org/abs/1705.06950", "Video", "Action Recognition", "Temporal_Action_Localization,Video_Classification,Action_Recognition", "-", "4", "-"];
+        dataset[37] = ["youtube_8m_segments_dataset", "YouTube-8M Segments Dataset", "The YouTube-8M dataset is a large scale video dat…set, and test set. In the training set, each ...", "http://research.google.com/youtube8m/index.html", "Video", "Classification", "Video_Classification,Video_Prediction", "8 million", "5", "-"];
+        dataset[38] = ["davis_16", "davis 16", "DAVIS16 is a dataset for video object segmentatio…). Per-frame pixel-wise annotations are offered.", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "Video_Object_Segmentation,Video_Salient_Object_Detection,Unsupervised_Video_Object_Segmentation", "-", "6", "-"];
+        dataset[39] = ["davis_17", "davis 17", "DAVIS17 is a dataset for video object segmentatio… for training, 30 for validation, 60 for testing", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "Semantic_Segmentation,Video_Object_Segmentation,Referring_Expression_Segmentation", "-", "7", "-"];
+        dataset[40] = ["davis_18", "davis 18", "-", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "-", "-", "8", "-"];
+        dataset[41] = ["davis_19", "davis 19", "-", "https://davischallenge.org/index.html", "Video", "Object Segmentation", "-", "-", "9", "-"];
+        dataset[42] = ["mot", "MOT", "-", "https://motchallenge.net/", "Video", "Object Tracking", "-", "-", "10", "-"];
+        dataset[43] = ["vot", "vot", "-", "https://www.votchallenge.net/index.html", "Video", "Object Tracking", "-", "-", "11", "-"];
+        dataset[44] = ["dexter", "dexter", "-", "http://archive.ics.uci.edu/ml//datasets/Dexter", "Text", "Classification", "-", "2600", "1", "-"];
+        dataset[45] = ["ubuntu_dialogue", "ubuntu dialogue", "Ubuntu Dialogue Corpus (UDC) is a dataset contain…ilding dialogue managers based on neural lang...", "https://ubuntudialogue.org/", "Text", "Dialogue Generation", "Dialogue_Generation,Conversational_Response_Selection,Answer_Selection", "-", "2", "-"];
+        dataset[46] = ["wmt19", "wmt19", "-", "http://www.statmt.org/wmt19/", "Text", "Machine Translation", "-", "-", "3", "-"];
+        dataset[47] = ["wmt18", "wmt18", "WMT 2018 is a collection of datasets used in shar…on. &nbsp;&nbsp;&nbsp;The conference featured...", "http://www.statmt.org/wmt18/papers.html", "Text", "Machine Translation", "Machine_Translation", "-", "4", "-"];
+        dataset[48] = ["wmt17", "wmt17", "-", "http://www.statmt.org/wmt17/results.html", "Text", "Machine Translation", "-", "-", "5", "-"];
+        dataset[49] = ["wmt16", "wmt16", "WMT 2016 is a collection of datasets used in shar…red tasks: &nbsp;&nbsp;&nbsp;a news translati...", "http://www.statmt.org/wmt16/", "Text", "Machine Translation", "Machine_Translation,Unsupervised_Machine_Translation", "-", "6", "-"];
+        dataset[50] = ["wmt15", "wmt15", "WMT 2015 is a collection of datasets used in shar…quality estimation task, &nbsp;an automatic p...", "http://www.statmt.org/wmt15/", "Text", "Machine Translation", "Machine_Translation", "-", "7", "-"];
+        dataset[51] = ["wmt14", "wmt14", "WMT 2014 is a collection of datasets used in shar…ics task, &nbsp;a medical text translation task.", "http://www.statmt.org/wmt14/", "Text", "Machine Translation", "Machine_Translation,Unsupervised_Machine_Translation", "-", "8", "-"];
+        dataset[52] = ["semeval-2016", "SemEval-2016", "-", "https://alt.qcri.org/semeval2016/index.php?id=tasks", "Text", "Word Sentiment", "-", "-", "9", "-"];
+        dataset[53] = ["bfm", "BFM", "-", "https://faces.dmi.unibas.ch/bfm/?nav=1-0&amp;id=basel_face_model", "3-D Image", "3-D Estimation", "-", "-", "1", "-"];
+        dataset[54] = ["pix3d", "Pix3D", "The Pix3D dataset is a large-scale benchmark of d…struction, retrieval, viewpoint estimation, etc.", "http://pix3d.csail.mit.edu/", "3-D Image", "Classification", "3D_Shape_Reconstruction,3D_Shape_Modeling,3D_Shape_Classification", "-", "2", "-"];
+        dataset[55] = ["shrec", "shrec", "The SHREC dataset contains 14 dynamic gestures pe… and 10 times by each participant in two way:...", "http://tosca.cs.technion.ac.il/book/shrec_robustness2010.html", "3-D Image", "Object Recognition", "Gesture_Recognition,Hand_Gesture_Recognition,Skeleton_Based_Action_Recognition", "-", "3", "-"];
+        dataset[56] = ["shapenetcore", "shapenetCore", "-", "https://www.shapenet.org/", "3-D Image", "Semantic Segmentation", "-", "-", "4", "-"];
+        dataset[57] = ["faust", "faust", "The FAUST dataset is a dataset of real 3D scans o…100 non-watertight meshes with 6,890 nodes each.", "http://faust.is.tue.mpg.de/", "3-D Image", "Semantic Segmentation", "Semantic_Segmentation,3D_Reconstruction,3D_Point_Cloud_Matching", "-", "5", "-"];
+        dataset[58] = ["scape", "Scape", "-", "https://ai.stanford.edu/~drago/Projects/scape/scape.html", "3-D Image", "3-D Estimation", "-", "-", "6", "-"];
+        dataset[59] = ["voxceleb", "VoxCeleb", "-", "http://www.robots.ox.ac.uk/~vgg/data/voxceleb/", "Sound", "Video Reconstruction", "-", "-", "1", "-"];
+    </script>
+</html>
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <link rel="stylesheet" type="text/css" href="style_layout.css">
+        <link rel="stylesheet" type="text/css" href="style_color.css">
+        <meta author="소프트웨어학과 202121028 김동우">
+        <meta charset="utf-8"/>
+    </head>
+
+    <body>
+        <div class="background">
+
+            <p class="big_title">Forum🗣️</p>
+
+            <form>
+                <textarea name="title" id="write_title" value="" rows="1" placeholder="제목"></textarea>
+
+                <textarea name="contents" id="write_contents" value="" rows="30" placeholder="내용"></textarea>
+            </form>
+
+            <div id="bottom_buttons2">
+                <a><input type="button" value="완료" class="button4" onclick="submit()"></a>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        var output = localStorage.getItem("board");
+        var board = JSON.parse(output);//localstorage에 저장된 배열을 불러옴
+
+        var num = parseInt(window.localStorage.getItem("forum_value_1"));//어떤 글을 수정하는 건지 인덱스 값을 가져옴
+
+        function load_article(){
+            var title = document.getElementById("write_title");
+            var contents = document.getElementById("write_contents");
+
+            title.value = board[num][0];//텍스트 입력창에다가 일단 localstorage에서 가져온 인덱스 값에 맞는 글의 제목과 내용을 넣어줌
+            contents.value = board[num][1]; 
+        }
+        load_article();
+
+        function submit(){//완료를 누르면 변경사항 저장함
+            var title = document.getElementById("write_title");
+            var contents = document.getElementById("write_contents");
+
+            board[num][0] = title.value;
+            board[num][1] = contents.value;
+
+            apply_change();
+
+            alert("수정이 완료되었습니다.");
+
+            location.replace("6-1forum-contents.html");//저장하고 다시 글 내용 창으로 이동
+        }
+
+        function apply_change(){
+            window.localStorage.setItem("board",JSON.stringify(board));//localstorage에 배열을 저장하는 방법
+        }
+    </script>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <link rel="stylesheet" type="text/css" href="style_layout.css">
+    <link rel="stylesheet" type="text/css" href="style_color.css">
+    <meta author="소프트웨어학과 202121028 김동우">
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+    <div class="background">
+
+        <p class="big_title">Forum🗣️</p>
+
+        <div id="article_list"></div>
+        
+        <form>
+        <div id="bottom_buttons1">
+            <input type="button" value=&lt; class="button4-1" onclick="make_table(-1)"><!--앞페이지-->
+            <input type="text" value = "" class="page_counter1" id="page_counter" disabled><!--페이지 수 보여줌-->
+            <input type="button" value=&gt; class="button4-2" onclick="make_table(1)"><!--뒷페이지-->
+            
+        </div>
+        
+        <div class="search2">
+            <input type="text" id="search_textarea" value="" placeholder="여기에 검색어 입력"><!--검색어 입력창-->
+            <a href = "6-3forum-search.html"><input type="button" value="🔍" id="search_button" onclick="search_articles()"></a>
+        </div>
+
+        <div id="bottom_buttons2">
+            <a href="6-2forum-write.html"><input type="button" value="글쓰기" class="button4" onclick=""></a><!--글쓰기-->
+        </div>
+        </form>
+    </div>
+</body>
+
+    <script>
+
+    var output = localStorage.getItem("board");
+    var board = JSON.parse(output);//이 페이지에서 쓰기 위해서 localstorage에 저장된 배열을 불러옴
+      
+    //board.sort(date_ascending); // 오름차순
+    function date_ascending(a, b) {
+    var dateA = new Date(a[2]).getTime();
+    var dateB = new Date(b[2]).getTime();
+    return dateA > dateB ? 1 : -1;};
+    //board.sort(date_descending); // 내림차순
+    function date_descending(a, b) {
+    var dateA = new Date(a[2]).getTime();
+    var dateB = new Date(b[2]).getTime();
+    return dateA < dateB ? 1 : -1;}; 
+
+    board.sort(date_descending);
+    apply_change();//board를 정렬하고 변경 사항을 저장함
+    
+    var page_count = 0; //페이지 넘김 카운트
+    function make_table(num){
+
+        var length = board.length;
+        var table = document.getElementById("article_list");
+        var final_code = "<table id='article_list' border='0'> <tr> <th>번호</th> <th>제목</th> <th>작성일</th> <th>좋아요</th> </tr>";
+        
+        var articles_in_one_page = 15; //한 페이지당 최대 글 수
+        var full_page_count = Math.ceil(length/articles_in_one_page)-1; //글이 15개 꽉 차 있는 페이지의 수, 소수점은 날림
+        console.log(full_page_count);//예를 들어 31페이지면 2가 나옴. 인덱스로는 0,1,2 총 3페이지
+        
+        page_count = page_count + num;// < 를 누르면 -1을 더하고 > 를 누르면 1을 더함
+        console.log(page_count);
+
+        if(page_count < 0){//page_count가 -1이 되면 다시 1을 더해서 0으로 만들어줌. -1번째 페이지라는건 없으니까
+            page_count = page_count + 1; 
+        }
+        else if (page_count >= (full_page_count+1)) {//0,1,2페이지 까지만 있는건데 3페이지로 가려고 하면 1을 빼서 다시 2로 만듦
+            page_count = page_count - 1;
+        }
+        console.log(page_count);//0,1,2,3... 페이지
+
+        var start = articles_in_one_page*page_count; //15*0 = 0 처음 인덱스
+        var end = articles_in_one_page*(page_count+1) // 15*1 = 15 끝 인덱스
+
+        if(page_count == full_page_count){//if마지막 페이지에 가려고 하면
+            end = length;
+            //끝 인덱스로 board의 길이를 줌. 이렇게 하는 이유는 마지막 페이지가 15개씩 꽉차있지 않아 있을 수 있기 때문.
+            //그냥 또 +15해서 뽑아내면 인덱스 오류남
+        }
+        console.log(start,end);
+
+        var page_counter = document.getElementById("page_counter");
+        page_counter.value = (page_count+1)+" / "+(Math.ceil(length/articles_in_one_page));
+        //밑에있는 페이지 수 표시기에 값 보내줌 ceil은 소수점까지 올리는 함수
+
+        for(var i = start; i< end; i++){
+            var code= "<tr> <td>"+(length-i)+"</td> <td onclick='save_article("+i+")'><a href='6-1forum-contents.html'>"+board[i][0]+"</a></td> <td>"+board[i][2]+"</td> <td>"+board[i][3]+"</td></tr>"
+            final_code=final_code+code;
+        }
+        table.innerHTML=final_code;
+    }
+
+    function search_articles(){
+        var input = document.getElementById("search_textarea");
+        var forum_array_1 = [];
+        var count = 0;
+
+        for (var i = 0; i < board.length; i++){
+            var comp = board[i][0];
+            var result = comp.includes(input.value);
+            if(result == true) {
+                //pass
+            }
+             else {
+                continue;
+            }
+            
+            forum_array_1[count] = [i];
+            count++;   
+        }
+        window.localStorage.setItem("forum_array_1",JSON.stringify(forum_array_1));//localstorage에 배열을 저장하는 방법
+        //조건에 맞는 글들의 인덱스를 forum_array_1으로 localstorage에 배열형태로 저장함
+    }
+
+    function save_article(i) {//글을 눌렀을때 그 글의 인덱스를 6-1forum-contents에 보내주기 위함. 이건 6-2forum-edit에서도 사용함.
+        window.localStorage.setItem("forum_value_1",i);
+    }
+
+    function apply_change(){//board의 변경사항을 저장함
+        window.localStorage.setItem("board",JSON.stringify(board));//localstorage에 배열을 저장하는 방법
+    }
+    
+    make_table(0);
+    </script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style_layout.css">
+    <link rel="stylesheet" type="text/css" href="style_color.css">
+    <meta author="소프트웨어학과 202121028 김동우">
+    <meta charset="utf-8"/>
+    <title>상명 Data Wiki</title>
+</head>
+
+
+
+<body>
+    <div class="wrapwrap">
+    <div class="wrap">
+
+        
+    <a id="logo_left" href="1main(Run_This).html"><img src="images/logo1-1.jpg" width="200"></a><!--왼쪽 로고-->
+    <a id="logo_right" href="https://swai.smu.ac.kr/"><img src="images/logo2.png" width="200"></a><!--오른쪽 로고-->
+        
+    <div class="nav"> <!--네비바--> 
+        <a href="2home.html" target="display_area">Home</a>
+            ㅣ
+        <a href="3datawiki.html" target="display_area">Data Wiki</a>
+            ㅣ
+        <a href="4sharehub.html" target="display_area">Share Hub</a>
+            ㅣ
+        <a href="5colosseum.html" target="display_area">Colosseum</a>
+            ㅣ
+        <a href="6forum.html" target="display_area">Forum</a>
+    </div>
+        
+    <img src="images/logo_bar.png" width="100%"></a><!--하단 배너-->
+
+    <hr/>
+    <!--iframe밑에 깔아주는 배경, 처음에는 iframe에 뜨는 각 페이지마다 배경화면을 넣었었는데 그러니까 로딩속도가 좀 거시기해서
+    그냥 main.html에서 처음 한 번만 배경화면을 불러오는 식으로 고침-->
+    <div class="background_paint_wall">
+        <iframe src="2home.html" name="display_area" id="display_area" width="100%" height="2000px" scrolling="no" frameborder="0" border="0"></iframe>
+        <!--각 페이지가 뜨는 iframe-->
+    </div>
+
+    <hr/>
+
+    <footer id="footer_background"><!--footer 배경색-->  
+    <div id="footer_yellow">
+        개인정보처리방침&nbsp;&nbsp;<span id="footer_gray">이메일주소무단수집거부</span><br>
+    </div>
+    <div id="footer_gray">
+            (03016)서울시 종로구 홍지문 2길 20 상명대학교 SW중심대학사업단<br>
+            COPYRIGHT BY SANGMYUNG UNIVERSITY ALL RIGHTS REVERSED.
+    </div>
+    <!--누르면 맨 위로 가는 버튼, a태그로 해도 되지만 찾아보니까 더 좋은 방법이 있어서 이렇게 함-->
+    <input type="button" id="go_to_top" value="맨위로" onClick="javascript:window.scrollTo(0,0)">
+    <a href="https://www.instagram.com/smu_sw/"><img src="images/Instagram-Icon.png" id="instagram_icon"></a><!--누르면 상명대 sw 어쩌구 인스타로 이동함-->
+    </footer>
+    </div>
+    </div>
+</body>
+</html>

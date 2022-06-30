@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <link rel="stylesheet" type="text/css" href="style_layout.css">
+    <link rel="stylesheet" type="text/css" href="style_color.css">
+    <meta author="소프트웨어학과 202121028 김동우">
+    <meta charset="utf-8"/>
+</head> 
+
+<body>
+    <div class="background">
+
+        <p class="big_title">Share Hub📖</p>
+
+        <div class="url_select_bar">
+            <p id="url_select_bar_title">TenserFlow 튜토리얼</p>
+            <select class="select2" name="tensorflow_text" size="1" id="tensorflow_text" onchange="move_to_link1('tensorflow_text')">
+            <option value="">자연어</option>
+            <option value="https://www.tensorflow.org/text/guide/word_embeddings?hl=ko">단어 임베딩</option>
+            <option value="https://www.tensorflow.org/tutorials/text/word2vec?hl=ko">Word2Vec</option>
+            <option value="https://www.tensorflow.org/text/tutorials/text_classification_rnn?hl=ko">RNN을 이용한 텍스트 분류</option>
+            <option value="https://www.tensorflow.org/text/tutorials/classify_text_with_bert?hl=ko">BERT로 텍스트 분류</option>
+            <option value="https://www.tensorflow.org/text/tutorials/bert_glue?hl=ko">TPU에서 BERT를 사용하여 GLUE 작업 해결</option>
+            <option value="https://www.tensorflow.org/text/tutorials/nmt_with_attention?hl=ko">어텐션을 사용한 인공신경망 기계번역</option>
+            <option value="https://www.tensorflow.org/tutorials/text/image_captioning?hl=ko">이미지 캡션</option>
+            </select>
+
+            <select class="select1" name="tensorflow_image" size="1" id="tensorflow_image" onchange="move_to_link1('tensorflow_image')">
+            <option value="">이미지</option>
+            <option value="https://www.tensorflow.org/tutorials/images/cnn?hl=ko">컨볼루셔널 신경망</option>
+            <option value="https://www.tensorflow.org/tutorials/images/classification?hl=ko">이미지 분류</option>
+            <option value="https://www.tensorflow.org/tutorials/images/transfer_learning?hl=ko">전이 학습 및 미세조정</option>
+            <option value="https://www.tensorflow.org/tutorials/images/transfer_learning_with_hub?hl=ko">TF HUB를 사용한 전이 학습</option>
+            <option value="https://www.tensorflow.org/tutorials/images/data_augmentation?hl=ko">데이터 증강</option>
+            <option value="https://www.tensorflow.org/tutorials/images/segmentation?hl=ko">이미지 분절화</option>
+            <option value="https://github.com/tensorflow/hub/blob/master/examples/colab/tf2_object_detection.ipynb">TF HUB를 사용한 객체 감지</option>
+            </select><br><br>
+
+            <select class="select2" name="tensorflow_video" size="1" id="tensorflow_video" onchange="move_to_link1('tensorflow_video')">
+            <option value="">동영상</option>
+            <option value="https://www.tensorflow.org/tutorials/images/cnn?hl=ko">컨볼루셔널 신경망</option>
+            <option value="https://www.tensorflow.org/tutorials/images/classification?hl=ko">이미지 분류</option>
+            <option value="https://www.tensorflow.org/tutorials/images/transfer_learning?hl=ko">전이 학습 및 미세조정</option>
+            <option value="https://www.tensorflow.org/tutorials/images/transfer_learning_with_hub?hl=ko">TF HUB를 사용한 전이 학습</option>
+            <option value="https://www.tensorflow.org/tutorials/images/data_augmentation?hl=ko">데이터 증강</option>
+            <option value="https://www.tensorflow.org/tutorials/images/segmentation?hl=ko">이미지 분절화</option>
+            <option value="https://github.com/tensorflow/hub/blob/master/examples/colab/tf2_object_detection.ipynb">TF HUB를 사용한 객체 감지</option>
+            </select>
+
+            <select class="select1" name="tensorflow_audio" size="1" id="tensorflow_audio" onchange="move_to_link1('tensorflow_audio')">
+            <option value="">음성</option>
+            <option value="https://www.tensorflow.org/tutorials/audio/simple_audio?hl=ko">단순한 오디오 인식</option>
+            <option value="https://www.tensorflow.org/tutorials/audio/transfer_learning_audio?hl=ko">오디오 인식을 위한 전이 학습</option>
+            </select>
+            <!--구현해야된다고 해서 구현하긴 했는데 tensorflow에서 iframe 연결을 거부하네요...-->
+            <br>
+
+            <p id="url_select_bar_title">파이토치 튜토리얼</p>
+            
+            <select class="select2" name="pytorch_text" size="1" id="pytorch_text" onchange="move_to_link2('pytorch_text')">
+            <option value="">자연어</option>
+            <option value="https://tutorials.pytorch.kr/intermediate/torchvision_tutorial.html">TORCHVISION 객체 검출 미세조정</option>
+            <option value="https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html">컴퓨터 비전(VISION)을 위한 전이학습</option>
+            <option value="https://tutorials.pytorch.kr/beginner/fgsm_tutorial.html">적대적 예제 생성</option>
+            <option value="https://tutorials.pytorch.kr/beginner/dcgan_faces_tutorial.html">DCGAN 튜토리얼</option>
+            <option value="https://tutorials.pytorch.kr/beginner/vt_tutorial.html">배포를 위한 비전 트랜스포머 모델 최적화하기</option>
+            </select>
+
+            <select class="select1" name="pytorch_image" size="1" id="pytorch_image" onchange="move_to_link2('pytorch_image')">
+            <option value="">이미지</option>
+            <option value="https://tutorials.pytorch.kr/intermediate/torchvision_tutorial.html">TORCHVISION 객체 검출 미세조정</option>
+            <option value="https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html">컴퓨터 비전(VISION)을 위한 전이학습</option>
+            <option value="https://tutorials.pytorch.kr/beginner/fgsm_tutorial.html">적대적 예제 생성</option>
+            <option value="https://tutorials.pytorch.kr/beginner/dcgan_faces_tutorial.html">DCGAN 튜토리얼</option>
+            <option value="https://tutorials.pytorch.kr/beginner/vt_tutorial.html">배포를 위한 비전 트랜스포머 모델 최적화하기</option>
+            </select><br><br>
+
+            <select class="select2" name="pytorch_video" size="1" id="pytorch_video" onchange="move_to_link2('pytorch_video')">
+            <option value="">동영상</option>
+            <option value="https://tutorials.pytorch.kr/intermediate/torchvision_tutorial.html">TORCHVISION 객체 검출 미세조정</option>
+            <option value="https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html">컴퓨터 비전(VISION)을 위한 전이학습</option>
+            <option value="https://tutorials.pytorch.kr/beginner/fgsm_tutorial.html">적대적 예제 생성</option>
+            <option value="https://tutorials.pytorch.kr/beginner/dcgan_faces_tutorial.html">DCGAN 튜토리얼</option>
+            <option value="https://tutorials.pytorch.kr/beginner/vt_tutorial.html">배포를 위한 비전 트랜스포머 모델 최적화하기</option>
+            </select>
+
+            <select class="select1" name="pytorch_audio" size="1" id="pytorch_audio" onchange="move_to_link2('pytorch_audio')">
+            <option value="">음성</option>
+            <option value="https://tutorials.pytorch.kr/beginner/audio_io_tutorial.html">AUDIO I/O</option>
+            <option value="https://tutorials.pytorch.kr/beginner/audio_resampling_tutorial.html">AUDIO RESAMPLING</option>
+            <option value="https://tutorials.pytorch.kr/beginner/audio_data_augmentation_tutorial.html">AUDIO DATA AUGMENTATION</option>
+            <option value="https://tutorials.pytorch.kr/beginner/audio_feature_extractions_tutorial.html">AUDIO FEATURE EXTRACTIONS</option>
+            <option value="https://tutorials.pytorch.kr/beginner/audio_feature_augmentation_tutorial.html">AUDIO FEATURE AUGMENTATION</option>
+            <option value="https://tutorials.pytorch.kr/beginner/audio_datasets_tutorial.html">AUDIO DATASETS</option>
+            <option value="https://tutorials.pytorch.kr/intermediate/speech_recognition_pipeline_tutorial.html">SPEECH RECOGNITION WITH WAV2VEC2</option>
+            <option value="https://tutorials.pytorch.kr/intermediate/speech_command_classification_with_torchaudio_tutorial.html">SPEECH COMMAND CLASSIFICATION WITH TORCHAUDIO</option>
+            <option value="https://tutorials.pytorch.kr/intermediate/text_to_speech_with_torchaudio.html">TEXT-TO-SPEECH WITH TORCHAUDIO</option>
+            <option value="https://tutorials.pytorch.kr/intermediate/forced_alignment_with_torchaudio_tutorial.html">FORCED ALIGNMENT WITH WAV2VEC2</option>
+            </select>
+
+        </div>
+        <iframe name="url_display" id="url_display"></iframe>
+    </div>
+</body>
+
+    <script>
+        function move_to_link1(val){
+            var option = document.getElementById(val)
+            var tutorial = option.options[option.selectedIndex].value;//select의 option value를 가져오는 방법
+            //document.getElementById("url_display").src = tutorial;
+            window.open(tutorial);
+            //tensorflow에서 iframe연결을 거부해서 그냥 새창으로 여는 식으로 구현함.
+
+            console.log("함수 작동")
+        }
+
+        function move_to_link2(val){
+            var option = document.getElementById(val)//DOM
+            var tutorial = option.options[option.selectedIndex].value;//select의 option value를 가져오는 방법
+            document.getElementById("url_display").src = tutorial;//iframe의 src를 바꿔치기함
+
+            console.log("함수 작동")
+        }
+    </script>
+</html>

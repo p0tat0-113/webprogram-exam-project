@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <link rel="stylesheet" type="text/css" href="style_layout.css">
+        <link rel="stylesheet" type="text/css" href="style_color.css">
+        <meta author="소프트웨어학과 202121028 김동우">
+        <meta charset="utf-8"/>
+    </head>
+
+    <body>
+        <div class="background">
+
+            <p class="big_title">Forum🗣️</p>
+
+            <form>
+                <textarea name="title" id="write_title" value="" rows="1" placeholder="제목"></textarea>
+
+                <textarea name="contents" id="write_contents" value="" rows="30" placeholder="내용"></textarea>
+            </form>
+
+            <div id="bottom_buttons2">
+                <a><input type="button" value="완료" class="button4" onclick="submit()"></a>
+            </div>
+        </div>
+    </body>
+
+    <script>
+
+        var output = localStorage.getItem("board");
+        var board = JSON.parse(output);//localstorage에 저장된 배열을 불러옴
+
+        function submit(){
+            var title = document.getElementById("write_title");
+            var contents = document.getElementById("write_contents");
+            var num = parseInt(board.length);
+
+            board[num] = ["","","",""];//일단 맨 끝에 빈 배열을 새로 하나 생성함
+
+            board[num][0]= title.value;//빈 배열에 텍스트 입력창에 입력한 내용을 넣어줌
+            board[num][1]= contents.value;
+            
+            let today = new Date();   
+            let year = today.getFullYear(); // 년도
+            let month = today.getMonth() + 1;  // 월
+            let date = today.getDate();  // 날짜
+            if(month < 10){
+                month = "0"+month;
+            }
+            board[num][2]= (year+"."+month+"."+date);//글 작성한 날짜 넣어줌. 실제 날짜
+
+            board[num][3]= 0;//좋아요 수
+
+            apply_change();//변경사항 적용
+
+            window.history.back();//뒤로가기
+        }
+
+        function apply_change(){
+            window.localStorage.setItem("board",JSON.stringify(board));//localstorage에 배열을 저장하는 방법
+        }
+    </script>
+
+</html>

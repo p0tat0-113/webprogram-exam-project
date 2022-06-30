@@ -1,0 +1,125 @@
+:root {/*css에서 전역변수 선언*/
+    --image: url("images/white_paint2.jpg");/*background-image url을 변수화하려면 이렇게 해야됨*/
+    --background_1: white;
+    --background_hover_1: gray;
+    --text_color_1:black;
+    --text_color_2:gray;
+    --border_color:gray;
+    --pepe: rgba(255,255,255,0.8);
+    --footer_background: beige;
+}
+
+@media(prefers-color-scheme: dark) {/*기기가 다크모드 상태인 것을 감지해서 자동으로 다크모드로 전환*/
+    :root{
+        --image: url("images/dark_paint1.jpg");
+        --background_1: rgb(46, 46, 46);
+        --background_hover_1: gray;
+        --text_color_1:white;
+        --text_color_2:white;
+        --border_color:gray;
+        --pepe: rgba(46,46,46,0.8);
+        --footer_background: rgb(46, 46, 46);
+    }
+}
+
+
+/*main.html*/
+.wrapwrap{background-color: var(--background_1);}
+.wrap{background-color: var(--background_1);}
+
+.nav a{color: var(--text_color_1);}
+.nav a:hover{color: blue;}
+
+.background_paint_wall{background-image: var(--image);}/*이렇게 main.html이 배경화면을 가지고 있게 하니까 로딩 속도 빨라짐*/
+
+#footer_background{background-color: var(--footer_background);}
+#footer_yellow{color: rgba(255, 218, 8, 0.688);}
+#footer_gray{color: var(--text_color_2);}
+
+#go_to_top{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+#go_to_top:hover{background-color: var(--background_hover_1);  color: white;}
+
+.big_title{color:var(--text_color_1)}
+
+/*home.html*/
+
+.background{background-color: transparent;}
+
+.windowcon{border: solid 5px gray;}
+
+#left_box{background-color: var(--background_1); border:solid 5px gray;}
+#right_box{background-color: var(--background_1); border:solid 5px gray;}
+#box_title{color: var(--text_color_1);}
+#box_list{color: gray;}
+#box_list a{color:gray;}
+#box_list a:hover{color: blue;}
+
+/*datawiki.html*/
+#left_bar{border: solid 5px gray; background-color: var(--background_1);}
+
+#contents{border: solid 5px gray; background-color: var(--background_1);} 
+
+#contents{background-image: linear-gradient(var(--pepe),var(--pepe)), url(images/pepe.png);}/*linear-gradiant로 rgba를 조정해서 배경이미지만 투명하게 만들 수 있음*/
+
+#left_list_bar{border: solid 5px gray; background-color: var(--background_1);}
+
+#contents_display{border: solid 5px gray; background-color: var(--background_1);}
+
+.contents_box_title{color: gray;}
+
+.search1{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+
+.button5{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+.button5:hover{background-color: var(--background_hover_1);  color: white;}
+
+.button5-1{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}/*float:left를 넣으니까 우측 select가 바로 철석 달라붙네*/
+.button5-1:hover{background-color: var(--background_hover_1);  color: white;}
+
+.select1{background-color: var(--background_1); border: 3px solid gray; color: gray;}
+.select1:hover{background-color: var(--background_hover_1);  color: white;}
+
+.button6{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+.button6:hover{background-color: var(--background_hover_1);  color: white;}
+
+/*sharehub.html*/
+/*튜토리얼 선택 버튼*/
+.url_select_bar{border: solid 5px gray; background-color: var(--background_1);}
+#url_select_bar_title{color: var(--text_color_1);}
+
+.select2{background-color: var(--background_1); border: 3px solid gray; color: gray;}
+.select2:hover{background-color: var(--background_hover_1);  color: white;}
+
+#url_display{border: solid 5px gray; background-color: var(--background_1);}
+
+/*forum.html*/
+#article_list{background-color: var(--background_1); border-top: 1px solid #444444;}
+th,td{border-bottom: 1px solid #444444; color: var(--text_color_1);}
+#article_list a{color: var(--text_color_1);}
+#article_list a:hover{color: blue;}
+
+.button4{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+.button4:hover{background-color: var(--background_hover_1); color: white;}
+
+.button4-1{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+.button4-1:hover{background-color: var(--background_hover_1);  color: white;}
+.page_counter1{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+.button4-2{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+.button4-2:hover{background-color: var(--background_hover_1);  color: white;}
+
+.search2{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+#search_textarea{background-color: transparent; color: var(--text_color_2);}
+#search_button{background-color: transparent;}
+
+.button4-3{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray;}
+.button4-3:hover{background-color: var(--background_hover_1);  color: white; }
+
+/*forum-contents.html*/
+#contents_title{color: var(--text_color_1); border: 5px solid gray; background-color: var(--background_1);}
+#contents_contents{color: var(--text_color_1); border: 5px solid gray; background-color: var(--background_1);}
+
+.button7{background-color: var(--background_1); border: 3px solid gray; border-color: gray; color: gray; }
+.button7:hover{background-color: var(--background_hover_1);  color: white;}
+
+/*forum_write*/
+#write_title{color: var(--text_color_1); border: 5px solid gray; background-color: var(--background_1);}
+#write_contents{color: var(--text_color_1); border: 5px solid gray; background-color: var(--background_1);}
